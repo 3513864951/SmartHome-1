@@ -34,8 +34,9 @@ public class Set_air extends AppCompatActivity {
     public static final String TIME="time";
     RecyclerView recyclerView;
     private AirListAdaptor airListAdaptor;
-    private List<Device> mAirList;
+    private List<Device> mAirList=new ArrayList<>();
     private List<Integer> positionList=new ArrayList<>();//储存选择的电器
+    private List<Device> deviceChoose=new ArrayList<>();
     private Mission mission;
     private MaterialButton create;
     private CustomizeGoodsAddView customizeGoodsAddView;
@@ -72,40 +73,33 @@ public class Set_air extends AppCompatActivity {
             for(int i=0;i<mission.getS_deviceList().size();i++){
                 String target_long_address=mission.getS_deviceList().get(i).getTarget_long_address();
                 Device device=LitePal.where("target_long_address = ?",target_long_address).findFirst(Device.class);
-                mAirList.add(device);
+                deviceChoose.add(device);
             }
-        }else
-            mAirList=LitePal.where("device_type = ? and flag = ? and use = ?","02","1","0").find(Device.class);
+        }
+        mAirList=LitePal.where("device_type = ? and flag = ?","02","1").find(Device.class);
         clickListenerInit();
         recyclerView();
-
+        //还有点进去判断编辑那通过长地址更新不对，太少了，应该还要通过mission_id或者其他东西，比如时间,毕竟有可能把其他场景的也set了
     }
     //记录当前位置
     private int currentPosition = 0;
     //初始化点击事件
 
     private void recyclerView() {
+        /**
+         * 清除已经设置的电器
+         */
+        for (int i = 0; i < mAirList.size(); i++) {
+            String target_long_address=mAirList.get(i).getTarget_long_address();
+            for(int j=0;j<deviceChoose.size();j++)
+                if(target_long_address.equals(deviceChoose.get(j).getTarget_long_address())){
+                    mAirList.remove(i);
+                    break;
+                }
+        }
         recyclerView=findViewById(R.id.select_air);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         airListAdaptor=new AirListAdaptor(this,R.layout.scene_airlist,mAirList);
-//        airListAdaptor.setOnItemClickListener(new AirListAdaptor.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                for(int i=0;i<positionList.size();i++){
-//                    if(positionList.get(i)==position){
-//                        count=i;
-//                        positionList.remove(i);
-//                    }
-//                }
-//                if(count==-1)
-//                {
-//                    positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
-//
-//                }
-//
-//
-//            }
-//        });
         recyclerView.setAdapter(airListAdaptor);
         airListAdaptor.setOnItemClickListner(new AirListAdaptor.OnItemClickListner() {
             @Override
@@ -183,7 +177,7 @@ public class Set_air extends AppCompatActivity {
 
                 }else
                 {
-                    List<Mission> missionList=LitePal.where("time = ?",Set_air.TIME).find(Mission.class);
+                    List<Mission> missionList=LitePal.where("time = ?",timeIn).find(Mission.class);
                     mission=missionList.get(0);
                 }
                 if(positionList!=null){
@@ -200,6 +194,7 @@ public class Set_air extends AppCompatActivity {
                                 for (int i = 0; i < positionList.size(); i++) {
                                     int n=positionList.get(i);
                                     String target_long_address=mAirList.get(n).getTarget_long_address();
+                                    String target_short_address=mAirList.get(n).getTarget_short_address();
                                     S_Device s_device=new S_Device();
                                     s_device.setDevice_type("02");
                                     if(warm!=-1)
@@ -215,6 +210,9 @@ public class Set_air extends AppCompatActivity {
                                     if(max!=-1)
                                         s_device.setAir_model("3");
                                     mission.setJudge(4);
+                                    s_device.setTarget_short_address(target_short_address);
+                                    s_device.setTarget_long_address(target_long_address);
+                                    s_device.setTemp(temp);
                                     if(flag==0)
                                     {
                                         s_device.setMission(mission);
@@ -223,14 +221,11 @@ public class Set_air extends AppCompatActivity {
                                         mission.setTemp(temp);
                                         mission.save();
                                         Device device=new Device();
-//                                        device.setUse(1);
-
-                                        s_device.setTemp(temp);
                                         device.updateAll("target_long_address = ?",target_long_address);
                                         s_device.save();
                                     }
                                     else{
-                                        s_device.updateAll("target_long_address = ?",target_long_address);
+                                        s_device.updateAll("target_long_address = ? and mission_id = ?",target_long_address,mission.getId()+"");
                                         mission.updateAll("time = ?",timeIn);
                                     }
                                     finish();

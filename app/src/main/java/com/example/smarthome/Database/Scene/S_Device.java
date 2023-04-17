@@ -4,7 +4,9 @@ import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 场景中的设备
+ */
 public class S_Device extends LitePalSupport {
 
     private String category;//判断是条件电器还是执行电器,1为执行的，0为条件
@@ -13,7 +15,6 @@ public class S_Device extends LitePalSupport {
     private String target_long_address;
     private String target_short_address;
     private String device_type;
-    //条件就一个，同一设备多条件就在condition中同一个设备放多个，只不过条件不同来表示
     private Condition condition;
     private Mission mission;
     private Temp temp;

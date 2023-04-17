@@ -1,6 +1,8 @@
 package com.example.smarthome.Objects;
 
-
+/**
+ * @description 弃用
+ */
 public class Info {
     //
     private String adress;

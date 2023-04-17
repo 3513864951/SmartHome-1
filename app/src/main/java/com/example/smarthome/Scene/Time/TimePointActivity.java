@@ -59,7 +59,7 @@ public class TimePointActivity extends AppCompatActivity {
         add_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add your code here
+
                 DateDialog dateDialog=new DateDialog(TimePointActivity.this);
                 dateDialog.show();
                 dateDialog.onClickOkBtnLisitener(new View.OnClickListener() {
@@ -83,14 +83,12 @@ public class TimePointActivity extends AppCompatActivity {
         time_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add your code here
                 //这边用temp不行，无法精确寻找时间，还是用condition
                 //还是要传入时间
                 Temp temp= LitePal.findLast(Temp.class);
                 c_time=new C_Time();
                 c_time.setTime(date);
                 c_time.setTemp(temp);
-
                 List<C_Time> c_timeList=new ArrayList<>();
                 c_timeList.add(c_time);
                 temp.getC_timeList().add(c_time);
@@ -118,7 +116,7 @@ public class TimePointActivity extends AppCompatActivity {
                     condition.setTemp(temp);
                     condition.setJudge(3);
                     temp.updateAll();
-                    c_time.updateAll("condition_id + ?",condition.getId()+"");
+                    c_time.updateAll("condition_id = ?",condition.getId()+"");
                     condition.updateAll("time = ?",setTime);
                 }
 

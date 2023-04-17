@@ -1,22 +1,26 @@
-package com.example.smarthome.Objects.Page_Huiju;
+package com.example.smarthome.Page_Huiju;
 
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.AddHomesAdapter;
 import com.example.smarthome.Database.AddHomes;
 import com.example.smarthome.R;
+import com.example.smarthome.View.SeekPage.CardLayoutManager;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 房间管理
+ */
 public class HomeManageActivity extends AppCompatActivity {
     Toolbar manageHome_back;
     RecyclerView recyclerView_home;
@@ -40,10 +44,11 @@ public class HomeManageActivity extends AppCompatActivity {
         addHomesList= LitePal.findAll(AddHomes.class);
         if(addHomesList.size()!=0)
         {
+
+            GridLayoutManager gridLayoutManager=new GridLayoutManager(HomeManageActivity.this,2);
+            recyclerView_home.setLayoutManager(gridLayoutManager);
             AddHomesAdapter addHomesAdapter=new AddHomesAdapter(addHomesList);
-            LinearLayoutManager layoutManager=new LinearLayoutManager(HomeManageActivity.this);
             addHomesAdapter.setContext(HomeManageActivity.this);
-            recyclerView_home.setLayoutManager(layoutManager);
             recyclerView_home.setAdapter(addHomesAdapter);
             addHomesAdapter.notifyDataSetChanged();
         }

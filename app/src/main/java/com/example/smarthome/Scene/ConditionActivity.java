@@ -79,8 +79,8 @@ private void initLayout(){
     smart_sensors.setOnTouchListener(new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-//            Intent intent=new Intent(ConditionActivity.this, Condition1.class);
-
+           Intent intent=new Intent(ConditionActivity.this, SceneSensor.class);
+           startActivity(intent);
             return true;
         }
     });

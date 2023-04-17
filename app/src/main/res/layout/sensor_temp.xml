@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/test">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addhome_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:logo="@drawable/back"
+        app:subtitleTextColor="@color/lighthui"
+        app:title="温度设置"
+        app:titleTextColor="@color/lighthui"/>
+
+    <TextView
+        android:id="@+id/min"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
+        android:drawableEnd="@drawable/enroll_next"
+        android:fontFamily="sans-serif-black"
+        android:text=" 大于"
+        android:textColor="@color/lighthui"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/min_num"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginRight="50dp"
+        android:text=""
+        android:textSize="15dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/lighthui"
+        android:layout_marginTop="130dp" />
+    <EditText
+        android:id="@+id/max_num"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginRight="50dp"
+        android:textSize="15dp"
+        android:text=""
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/lighthui"
+        android:layout_marginTop="235dp"
+
+/>
+    <TextView
+        android:id="@+id/max_nub"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:text="小于"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/lighthui"
+        android:layout_marginTop="195dp"
+        android:drawableEnd="@drawable/enroll_next"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="356dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginTop="310dp"
+        android:backgroundTint="#C6D2A5"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cornerRadius="4dp"/>
+</RelativeLayout>

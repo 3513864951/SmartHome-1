@@ -1,4 +1,4 @@
-package com.example.smarthome.Objects.Page_Huiju;
+package com.example.smarthome.Page_Huiju;
 
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @description 弃用
+ */
 public class ManageDevices extends AppCompatActivity {
     private List<Map<String,String>> deviceList=new ArrayList<Map<String,String>>();
     private  List<Device> devicelist=new ArrayList<>();
@@ -36,26 +38,6 @@ public class ManageDevices extends AppCompatActivity {
         setContentView(R.layout.managedevices);
         update_device=findViewById(R.id.update_device);
         initContent();
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recy_manage);
-//        LinearLayoutManager linearLayout = new LinearLayoutManager(ManageDevices.this);
-//        recyclerView.setLayoutManager(linearLayout);
-//        ManageAdaptor manageAdaptor = new ManageAdaptor(deviceList);
-//        recyclerView.setAdapter(manageAdaptor);
-//        manageAdaptor.notifyDataSetChanged();
-//        update_device.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clientMQTT=new ClientMQTT("light");
-//                try {
-//                    clientMQTT.Mqtt_innit();
-//                } catch (MqttException e) {
-//                    e.printStackTrace();
-//                }
-//                clientMQTT.startReconnect(ManageDevices.this);
-//                clientMQTT.publishMessagePlus(null,"0x0000","0xFF", "0x0003","0x02");
-//                manageAdaptor.notifyDataSetChanged();
-//            }
-//        });
     }
 
     private void initContent()

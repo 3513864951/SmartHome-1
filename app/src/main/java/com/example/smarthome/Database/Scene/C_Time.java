@@ -1,7 +1,9 @@
 package com.example.smarthome.Database.Scene;
 
 import org.litepal.crud.LitePalSupport;
-
+/**
+ * @description 场景时间
+ */
 public class C_Time extends LitePalSupport {
     //时间可以设置多个
     private int id;

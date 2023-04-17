@@ -26,8 +26,6 @@ public class AddMedalAdapter extends RecyclerView.Adapter <AddMedalAdapter.AddMe
     }
 
 
-//    public AddMedalAdapter(FragmentActivity activity, ArrayList<AddMedalHelper> addMedalHelpers) {
-//    }
 
     @NonNull
     @Override
@@ -40,27 +38,8 @@ public class AddMedalAdapter extends RecyclerView.Adapter <AddMedalAdapter.AddMe
     @Override
     public void onBindViewHolder(@NonNull AddMedalHolder holder, int position) {
         AddModel addMedalHelper = addMedalHelpers.get(position);
-//        holder.imageView.setImageResource(addMedalHelper.getImage());
         holder.title.setText(addMedalHelper.getModel());
-//        if(onItemClickListener!=null){
-//            holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position=holder.getLayoutPosition();//1
-//                    onItemClickListener.OnItemClickListener(holder.itemView,position);//2
-//                }
-//            });
-//        }
-//        if(onItemLongClickListener!=null){
-//            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    int position=holder.getLayoutPosition();
-//                    onItemLongClickListener.onItemLongClick(holder.itemView,position);
-//                    return true;//返回true表示消耗了事件不会继续传递啦！
-//                }
-//            });
-//        }
+
 
     }
 

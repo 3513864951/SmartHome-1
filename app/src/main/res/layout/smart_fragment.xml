@@ -62,14 +62,7 @@
                 android:layout_gravity="center">
 
             </androidx.recyclerview.widget.RecyclerView>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/add_sence"
-                android:layout_width="317dp"
-                android:layout_height="105dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center">
 
-            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,7 +90,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/alfa_slab_one"
-                        android:text=" 设\n\n\n 备"
+                        android:text="在\n线\n设\n备"
                         android:textColor="@color/black"
                         android:textSize="18dp" />
 
@@ -113,6 +106,53 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_toRightOf="@+id/title1"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/bg_card"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:id="@+id/title2"
+                    android:layout_width="100dp"
+                    android:layout_height="165dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/alfa_slab_one"
+                        android:text="离\n线\n设\n备"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/outline_device"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/title2"
                     android:descendantFocusability="blocksDescendants"
                     android:orientation="vertical" />
 

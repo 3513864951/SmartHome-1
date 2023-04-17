@@ -115,21 +115,18 @@ public class TimePeriodActivity extends AppCompatActivity {
         add_repeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add your code here
             }
         });
 
         time_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add your code here
-                //这边用temp不行，无法精确寻找时间，还是用condition
-                //还是要传入时间
                 Temp temp= LitePal.findLast(Temp.class);
                 c_time.setTime_start(date1);
                 c_time.setTime_end(date2);
                 c_time.setTemp(temp);
                 c_time.save();
+                condition.setJudge(3);
                 SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
                 Date date=new Date(System.currentTimeMillis());
                 String time=simpleDateFormat.format(date);
@@ -146,7 +143,6 @@ public class TimePeriodActivity extends AppCompatActivity {
                     condition.updateAll("time = ?",setTime);
                 }
                 Intent intent=new Intent(TimePeriodActivity.this, More.class);
-                //再设计一个暂存类Temp来储存设计好的条件和任务，如果场景保存了就存入Scene中，之后删除Temp中数据，如果没有，就删除Temp中数据
                 startActivity(intent);
             }
         });

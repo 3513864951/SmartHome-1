@@ -43,6 +43,8 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'org.litepal.guolindev:core:3.2.3'
     implementation'androidx.biometric:biometric:1.1.0'
+    implementation'com.github.zyl409214686:CustomRangeSeekBar:v1.0.3'
+    implementation 'com.github.jenly1314:arcseekbar:1.0.3'
     implementation 'com.alibaba:fastjson:2.0.23'
     implementation 'org.fusesource.mqtt-client:mqtt-client:1.12'
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'

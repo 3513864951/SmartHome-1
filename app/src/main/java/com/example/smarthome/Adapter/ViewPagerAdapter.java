@@ -92,16 +92,18 @@ public void setContext(Context context){
         brightness=(StepSeekBar)mList.get(position).findViewById(R.id.brightness);
         switch (position){
             case 0://第一个界面的控件
+
                 breathe.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         if(breath1==0){
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0105","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0106","0x02");
                             breath1=1;
 
                         }
                         else{
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0106","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0105","0x02");
                             breath1=0;
                         }
 
@@ -138,12 +140,12 @@ public void setContext(Context context){
                     @Override
                     public void onClick(View v) {
                         if(breath2==0){
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0205","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0206","0x02");
                             breath2=1;
 
                         }
                         else{
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0206","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0205","0x02");
                             breath2=0;
                         }
 
@@ -181,12 +183,12 @@ public void setContext(Context context){
                     @Override
                     public void onClick(View v) {
                         if(breath3==0){
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0305","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0306","0x02");
                             breath3=1;
 
                         }
                         else{
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0306","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0305","0x02");
                             breath3=0;
                         }
 
@@ -221,12 +223,12 @@ public void setContext(Context context){
                     @Override
                     public void onClick(View v) {
                         if(breath4==0){
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0405","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0406","0x02");
                             breath4=1;
 
                         }
                         else{
-                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0406","0x02");
+                            clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0405","0x02");
                             breath4=0;
                         }
 

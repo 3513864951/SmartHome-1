@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smarthome.R;
-
+/**
+ * @description 弃用
+ */
 public class Eroll extends AppCompatActivity {
     TextView enroll_back;
 

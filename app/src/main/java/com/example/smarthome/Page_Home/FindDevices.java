@@ -32,7 +32,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ * @description 测试用
+ */
 public class FindDevices extends AppCompatActivity {
     private List<Map<String,String>> deviceList=new ArrayList<Map<String,String>>();
     private  List<Device> devicelist=new ArrayList<>();
@@ -164,7 +166,6 @@ public class FindDevices extends AppCompatActivity {
 //            recyclerView.getAdapter().notifyDataSetChanged();
             // 使用postDelayed()方法在Handler对象中定时调用Runnable对象
             mHandler.postDelayed(mRunnable, 1000);
-            //FIXME 设备发现里面设备出现了但不点击同意或者拒绝，之后自动刷新，调用clear就又清楚了，设备又消失了，要在那个clear那加一个判断，为空就不删除，检测一下设备重复
         }
     };
 

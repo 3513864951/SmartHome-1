@@ -51,9 +51,9 @@ public class ClientMQTT {
     private static final String userName = "ESP32-C3-username";
 //    private static final String password = "ESP32-C3-password";
     private static final String password = "sUFhMRm3FUx6RqhKWYnRQBGQF6y1YZYHLsrVtaoYKA2GrPu9";
-    public  static final String serverURI="tcp://broker.emqx.io:1883";
-//  public  static final String serverURI="tcp://home.towo.eu.org";
-
+//    public  static final String serverURI="tcp://broker.emqx.io:1883";
+  public  static final String serverURI="tcp://home.towo.eu.org";
+    //TODO networkFlag
     private String device_id=MqttClient.generateClientId();
 
     private String topicName;
@@ -73,7 +73,6 @@ public class ClientMQTT {
     public String getTopicName() {
         return topicName;
     }
-
     public void setTopicName(String topicName) {
         this.topicName = topicName;
     }
@@ -96,20 +95,21 @@ public class ClientMQTT {
         client.setCallback(new MqttCallback() {
             @Override
             public void connectionLost(Throwable cause) {
-                System.out.println("connectionLost----------");
+                System.out.println("连接失败----------");
             }
 
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 String jsonData=new String(message.getPayload());
                 ParseJson parseJson=new ParseJson();
+                Log.i("数据到达!",jsonData);
                 parseJson.ParseJsonData(jsonData,flag);
-                System.out.println("messageArrived----------");
+                System.out.println("数据到达----------");
             }
 
             @Override
             public void deliveryComplete(IMqttDeliveryToken token) {
-                System.out.println("deliveryComplete----------");
+                System.out.println("发送成功----------");
             }
         });
     }
@@ -232,9 +232,6 @@ public class ClientMQTT {
     }
     //为活动专门设计的，配置多个而不会重复接收数据
 public void publishMessagePlusForActivity(String misc,String target_short_address,String device_type,String valid_data,String valid_data_length){
-//    LocalDateTime localDateTime = LocalDateTime.now();
-//    DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ISO_DATE_TIME;
-//    String timestamp=dateTimeFormatter.format(localDateTime);
     // 设置系统默认时区为 CST（即中国标准时间）
     TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
 // 获取当前北京时间

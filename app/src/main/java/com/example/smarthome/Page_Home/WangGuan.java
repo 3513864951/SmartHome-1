@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import com.example.smarthome.R;
 import com.example.smarthome.View.SelfTextView;
-
+/**
+ * @description 弃用
+ */
 public class WangGuan extends AppCompatActivity {
     SelfTextView selfTextView1,selfTextView2;
     @Override

@@ -43,7 +43,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * @description 语音识别
+ */
 public class SetVoice extends AppCompatActivity implements EventListener {
     Toolbar voice_tb;
     protected TextView txtResult;//识别结果
@@ -55,14 +57,7 @@ public class SetVoice extends AppCompatActivity implements EventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_voice);
-//        setContentView(R.layout.activity_set_voice);
-//        voice_tb=findViewById(R.id.voice_tb);
-//        voice_tb.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               finish();
-//            }
-//        });
+
 
         initView();
         initPermission();

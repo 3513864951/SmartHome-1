@@ -3,7 +3,9 @@ package com.example.smarthome.Database;
 import org.litepal.crud.LitePalSupport;
 
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class Model extends LitePalSupport {
     private int model;//模式
     private int curtain_model;

@@ -1,5 +1,7 @@
 package com.example.smarthome.Json;
-
+/**
+ * @description 弃用
+ */
 public class JsonArray {
     private int adress;
     private int code;

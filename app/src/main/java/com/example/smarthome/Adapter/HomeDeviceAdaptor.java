@@ -25,6 +25,9 @@ public class HomeDeviceAdaptor extends RecyclerView.Adapter<HomeDeviceAdaptor.Vi
     public void setDevices(List<Device> devices){
             this.chooseDevice=devices;
     }
+    public HomeDeviceAdaptor( List<Device> deviceList){
+        this.deviceList=deviceList;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         ImageView imageView;
@@ -53,21 +56,30 @@ public class HomeDeviceAdaptor extends RecyclerView.Adapter<HomeDeviceAdaptor.Vi
     public void onBindViewHolder(@NonNull HomeDeviceAdaptor.ViewHolder holder, int position) {
         String device_type=deviceList.get(holder.getAdapterPosition()).getDevice_type();
         String name=deviceList.get(holder.getAdapterPosition()).getName();
+        String target_long_address=deviceList.get(holder.getAdapterPosition()).getTarget_long_address();
         switch (device_type){
             case "01":
                 holder.imageView.setImageResource(R.drawable.adjust_lights);
-                holder.name.setText(name);
+                if(name!=null)
+                    holder.name.setText(name);
+                else
+                    holder.name.setText(target_long_address);
                 break;
             case "02":
                 holder.imageView.setImageResource(R.drawable.air_condition_smart);
-                holder.name.setText(name);
+                if(name!=null)
+                    holder.name.setText(name);
+                else
+                    holder.name.setText(target_long_address);
                 break;
             case "03":
                 holder.imageView.setImageResource(R.drawable.curtain_smart);
-                holder.name.setText(name);
+                if(name!=null)
+                    holder.name.setText(name);
+                else
+                    holder.name.setText(target_long_address);
                 break;
         }
-
     holder.checkBox.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class Set_lights extends AppCompatActivity {
     private LightListAdaptor lightListAdaptor;
     private List<Map<String, String>> mLightList=new ArrayList<>();
     private List<Device> lightList=new ArrayList<>();
+    private List<Device> deviceChoose=new ArrayList<>();//之前选择的电器
     private List<Integer> positionList=new ArrayList<>();//储存选择的电器
     private int count = -1;
     private int bright=-1;
@@ -95,7 +97,6 @@ public class Set_lights extends AppCompatActivity {
         clickListenerInit();
 
         //判断是否为再次编辑
- 
 
         if(timeIn==null)
             flag=0;//新的
@@ -106,41 +107,29 @@ public class Set_lights extends AppCompatActivity {
             for(int i=0;i<mission.getS_deviceList().size();i++){
                 String target_long_address=mission.getS_deviceList().get(i).getTarget_long_address();
                 Device device=LitePal.where("target_long_address = ?",target_long_address).findFirst(Device.class);
-                lightList.add(device);
+                deviceChoose.add(device);
             }
-        }else
-            lightList=LitePal.where("device_type = ? and flag = ? and use = ?","01","1","0").find(Device.class);
+        }
+        lightList=LitePal.where("device_type = ? and flag = ? and use = ?","01","1","0").find(Device.class);
         recyclerView();
     }
 
-
     private void recyclerView() {
+//        for (int i = 0; i < lightList.size(); i++) {
+//            String target_long_address=lightList.get(i).getTarget_long_address();
+//            for(int j=0;j<deviceChoose.size();j++){
+//                Log.i("----------------------C",deviceChoose.size()+"");
+//                Log.i("----------------------L",lightList.size()+"");
+//                if(target_long_address.equals(deviceChoose.get(j).getTarget_long_address())){
+//                    lightList.remove(i);
+//                    break;
+//                }
+//            }
+//        }
         recyclerView = findViewById(R.id.select_light);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         //有任务的不能显示，再Parse那里的短地址
         lightListAdaptor = new LightListAdaptor(this,R.layout.scenelightlist,lightList);
-
-//        lightListAdaptor.setOnItemClickListener(new LightListAdaptor.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                if(positionList.isEmpty())
-//                    positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
-//                else {
-//
-//                    for(int i=0;i<positionList.size();i++){
-//                        if(positionList.get(i)==position){
-//                            count=i;
-//                            positionList.remove(i);
-//                        }
-//                    }
-//                    if(count==-1)
-//                    {
-//                        positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
-//
-//                    }
-//                }
-//            }
-//        });
         recyclerView.setAdapter(lightListAdaptor);
 
         lightListAdaptor.setOnItemClickListner(new LightListAdaptor.OnItemClickListner()
@@ -164,7 +153,6 @@ public class Set_lights extends AppCompatActivity {
                         }
                 }
                 lightListAdaptor.notifyDataSetChanged();
-
             }
         });
         /**
@@ -204,7 +192,6 @@ public class Set_lights extends AppCompatActivity {
                     mission.save();
                 } else {
                     List<Mission> missionList = LitePal.where("time = ?", timeIn).find(Mission.class);
-                    //TODO 这个time是哪个time?
                     mission = missionList.get(0);
                 }
                 if(positionList.size()==0)
@@ -242,17 +229,13 @@ public class Set_lights extends AppCompatActivity {
                             }else
                                 s_device.setBrightness(bright);
                             if (flag == 0) {
-                                Device device=new Device();
-//                                device.setUse(1);
-                                device.updateAll("target_long_address = ?",target_long_address);
                                 s_device.setMission(mission);
                                 mission.getS_deviceList().add(s_device);
                                 s_device.save();
                                 mission.setJudge(3);
                                 mission.save();
                             } else{
-                                s_device.updateAll("target_long_address = ?", target_long_address);
-
+                                s_device.updateAll("target_long_address = ? and mission_id = ?", target_long_address,mission.getId()+"");
                             }
 
                         }

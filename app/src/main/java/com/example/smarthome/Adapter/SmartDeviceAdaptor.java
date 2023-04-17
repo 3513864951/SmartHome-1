@@ -69,10 +69,7 @@ public class SmartDeviceAdaptor extends RecyclerView.Adapter<SmartDeviceAdaptor.
                 String target_long_address=s_deviceList.get(holder.getAdapterPosition()).getTarget_long_address();
                 deviceType=(holder.deviceJudge.getText().toString());
                 switch (deviceType){
-                    //TODO 完成智能设备的点击事件  在OnBlind
-                    //TODO 每一种智能设备例表的显示就用之前的那三个LightListAdaptor，只要改一下LayoutManager为水平显示即可
-                    //TODO 再次编辑点击电器时，还要设计三个类似set的界面，只不过少了recyclerView
-                    //TODO 现在先做场景的recyclerView显示
+
                     case "01":
                         Intent intent=new Intent(parent.getContext(), Set_lights.class);
                         intent.putExtra("target_long_address",target_long_address);

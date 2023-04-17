@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Map;
-
+/**
+ * @description 弃用
+ */
 public class JSONTools {
     static final String host="66666";
     static final int port=6666;

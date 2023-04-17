@@ -3,7 +3,9 @@ package com.example.smarthome.Database;
 import org.litepal.crud.LitePalSupport;
 
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class Room extends LitePalSupport {
     private int category;
     private List<Device> deviceList;

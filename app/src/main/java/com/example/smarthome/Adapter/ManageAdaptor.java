@@ -22,6 +22,8 @@ import com.example.smarthome.Page_Samrt.AdjustTheAirCondition;
 import com.example.smarthome.Page_Samrt.AdjustTheLights;
 import com.example.smarthome.Page_Samrt.AdjustTheMusic;
 import com.example.smarthome.Page_Samrt.AdustTheCurtain;
+import com.example.smarthome.Page_Samrt.Humity;
+import com.example.smarthome.Page_Samrt.Monitoring;
 import com.example.smarthome.R;
 import com.example.smarthome.View.FButton;
 
@@ -89,9 +91,8 @@ public class ManageAdaptor extends RecyclerView.Adapter<ManageAdaptor.ViewHolder
             public boolean onLongClick(View v) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder (parent.getContext());
                 dialog.setTitle("是否删除电器？");//对话框标题
-                dialog.setMessage("Something important.");//对话框显示的信息
                 dialog.setCancelable(false);
-                dialog.setPositiveButton("OK", new DialogInterface.
+                dialog.setPositiveButton("确定", new DialogInterface.
                         OnClickListener() {//对话框中的按钮 OK
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -104,7 +105,7 @@ public class ManageAdaptor extends RecyclerView.Adapter<ManageAdaptor.ViewHolder
                 notifyDataSetChanged();
                     }
                 });
-                dialog.setNegativeButton("Cancel", new DialogInterface.
+                dialog.setNegativeButton("取消", new DialogInterface.
                         OnClickListener() {//对话框中的按钮 Cancle
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -178,6 +179,24 @@ public class ManageAdaptor extends RecyclerView.Adapter<ManageAdaptor.ViewHolder
                         intent4.putExtra(ManageAdaptor.DEVICE_TYPE,device_type);
                         parent.getContext().startActivity(intent4);
                         break;
+                    case "08":
+                        Intent intent5=new Intent(parent.getContext(), Monitoring.class);
+                        intent5.putExtra(ManageAdaptor.CONTROLLER_LONG_ADDRESS,controller_long_address);
+                        intent5.putExtra(ManageAdaptor.TARGET_LONG_ADDRESS,target_long_address);
+                        intent5.putExtra(ManageAdaptor.TARGET_SHORT_ADDRESS,target_short_address);
+                        intent5.putExtra(ManageAdaptor.NETWORK_FLAG,network_flag);
+                        intent5.putExtra(ManageAdaptor.DEVICE_TYPE,device_type);
+                        parent.getContext().startActivity(intent5);
+                        break;
+                    case "09":
+                        Intent intent6=new Intent(parent.getContext(), Humity.class);
+                        intent6.putExtra(ManageAdaptor.CONTROLLER_LONG_ADDRESS,controller_long_address);
+                        intent6.putExtra(ManageAdaptor.TARGET_LONG_ADDRESS,target_long_address);
+                        intent6.putExtra(ManageAdaptor.TARGET_SHORT_ADDRESS,target_short_address);
+                        intent6.putExtra(ManageAdaptor.NETWORK_FLAG,network_flag);
+                        intent6.putExtra(ManageAdaptor.DEVICE_TYPE,device_type);
+                        parent.getContext().startActivity(intent6);
+                        break;
                 }
                
    
@@ -198,35 +217,66 @@ public class ManageAdaptor extends RecyclerView.Adapter<ManageAdaptor.ViewHolder
         if (holder.imageView != null) {
         switch (Objects.requireNonNull(category)) {
             case "01":
-                holder.imageView.setImageResource(R.drawable.lights_smart);
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.lights_smart);
+                else
+                    holder.imageView.setImageResource(R.drawable.lights_smart_leave);
                 category = "电灯泡";
                 break;
             case "02":
-                holder.imageView.setImageResource(R.drawable.air_condition_smart);
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.air_condition_smart);
+                else
+                    holder.imageView.setImageResource(R.drawable.air_condition_smart_leave);
                 category = "空调";
                 break;
             case "03":
-                holder.imageView.setImageResource(R.drawable.curtain_smart);
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.curtain_smart);
+                else
+                    holder.imageView.setImageResource(R.drawable.curtain_smart_leave);
                 category = "窗帘";
                 break;
             case "04":
-                holder.imageView.setImageResource(R.drawable.lock_smart);
-                category = "门锁";
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.temp_hum_2);
+                else
+                    holder.imageView.setImageResource(R.drawable.temp_hum_1);
+                category = "空调传感器";
                 break;
             case "05":
-                holder.imageView.setImageResource(R.drawable.music);
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.temp1);
+                else
+                    holder.imageView.setImageResource(R.drawable.temp2);
                 category = "音响";
                 break;
+            case "06":
+                //TODO 图标
+                break;
+            case "08":
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.lock1);
+                else
+                    holder.imageView.setImageResource(R.drawable.lock2);
+                break;
+            case "09":
+                if(network_flag.equals("01"))
+                    holder.imageView.setImageResource(R.drawable.humidifier);
+                else
+                    holder.imageView.setImageResource(R.drawable.humidifier_leave);
         }
         }
         String name=mDeviceList.get(position).getName();
         if(name==null)
             holder.showCategory.setText(source_long_address);
+        else
+            holder.showCategory.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        return mDeviceList.size();/////////
+        return mDeviceList.size();
     }
     // 定义 Item 点击事件的监听器接口
     public interface OnItemClickListener {

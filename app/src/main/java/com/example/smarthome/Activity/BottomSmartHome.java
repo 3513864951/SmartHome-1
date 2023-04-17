@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.example.smarthome.Page_Home.HomeFragment;
-import com.example.smarthome.Objects.Page_Huiju.HuijuFrament;
+import com.example.smarthome.Page_Huiju.HuijuFrament;
 import com.example.smarthome.Page_Samrt.SmartFragment;
 import com.example.smarthome.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

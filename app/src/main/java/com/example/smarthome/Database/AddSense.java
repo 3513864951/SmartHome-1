@@ -1,8 +1,11 @@
 package com.example.smarthome.Database;
 
 import org.litepal.crud.LitePalSupport;
-
+/**
+ * @description 弃用
+ */
 public class AddSense extends LitePalSupport {
+
     private String sense_name;
     public void setSense_name(String sense_name) {
         this.sense_name = sense_name;

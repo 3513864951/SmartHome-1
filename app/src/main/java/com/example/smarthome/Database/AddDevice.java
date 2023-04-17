@@ -1,7 +1,11 @@
 package com.example.smarthome.Database;
 import org.litepal.crud.LitePalSupport;
 
+/**
+ * @description 弃用
+ */
 public class AddDevice extends LitePalSupport {
+
     private static AddDevice app;
     private String device;
 

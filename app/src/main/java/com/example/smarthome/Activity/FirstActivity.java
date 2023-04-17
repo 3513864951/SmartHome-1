@@ -60,8 +60,6 @@ public class FirstActivity extends AppCompatActivity {
     }
 
 class MyRunnable implements Runnable{
-
-
     @Override
     public void run() {
         Device device=new Device();
@@ -73,11 +71,7 @@ class MyRunnable implements Runnable{
             e.printStackTrace();
         }
         clientMQTT.publishMessagePlus(null,"0x0000","0xFF", "0x0003","0x02");
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        clientMQTT.publishMessagePlus(null,"0x00","0xFE","0X08","0X01");
     }
 
 }

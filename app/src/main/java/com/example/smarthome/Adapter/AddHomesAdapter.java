@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Database.AddHomes;
-import com.example.smarthome.Objects.Page_Huiju.AddHome;
+import com.example.smarthome.Page_Huiju.AddHome;
 
 import com.example.smarthome.R;
 
@@ -52,7 +52,6 @@ public class AddHomesAdapter extends RecyclerView.Adapter<AddHomesAdapter.ViewHo
     public void onBindViewHolder(@NonNull AddHomesAdapter.ViewHolder holder, int position) {
         AddHomes addHomes=list.get(position);
         holder.h_home.setText(addHomes.getHome());
-//        ImageView imageView= (ImageView) holder.view;
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

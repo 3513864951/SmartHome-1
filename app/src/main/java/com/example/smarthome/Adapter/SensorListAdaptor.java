@@ -40,7 +40,6 @@ public class SensorListAdaptor  extends RecyclerView.Adapter<SensorListAdaptor.V
             super(itemView);
             sensorView=itemView;
             sensorView.setOnClickListener(this);
-//            air_image=sensorView.findViewById(R.id.sensor_image);
             air_name=sensorView.findViewById(R.id.sensor_name);
             sensor_display1=sensorView.findViewById(R.id.sensor_display1);
             sensor_display2=sensorView.findViewById(R.id.sensor_display2);
@@ -103,26 +102,7 @@ public class SensorListAdaptor  extends RecyclerView.Adapter<SensorListAdaptor.V
                       break;
         }
 
-        holder.sensorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-              switch (device_type){
-                  case ("04"):
-                      Intent intent=new Intent();
-                      intent.putExtra(Scene.TIME,time1);
-                      holder.sensorView.getContext().startActivity(intent);
-                      break;
-                  case ("05"):
-
-                      break;
-                  case ("06"):
-
-                      break;
-
-              }
-            }
-        });
     }
 
     @Override

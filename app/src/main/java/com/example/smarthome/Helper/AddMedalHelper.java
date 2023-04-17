@@ -1,7 +1,9 @@
 package com.example.smarthome.Helper;
 
 import com.example.smarthome.Database.AddModel;
-
+/**
+ * @description 弃用
+ */
 public class AddMedalHelper extends AddModel {
     int image;
     String title,description;

@@ -29,9 +29,9 @@ import java.util.List;
  */
 public class UIHelper {
     /**
-     * TODO(在使用时ListView item必须不包含RelativeLayout(layout中必须重写measure()))
+     *
      * <p>
-     * TODO(谨慎使用)
+     *
      **/
     @Deprecated
     public static void setListViewHeight(ListView listView) {

@@ -107,9 +107,7 @@ public class LightListAdaptor1 extends RecyclerView.Adapter<LightListAdaptor1.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         View convertView;
         Context context;
-        ImageView light_image;
-        TextView light_name;
-        ConstraintLayout constraintLayout;
+
         public ViewHolder(View itemView, Context context) {
             super(itemView);
             this.convertView = itemView;

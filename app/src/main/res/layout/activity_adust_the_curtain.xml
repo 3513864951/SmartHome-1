@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="590dp"
             android:background="@drawable/bg_cr">
 
 
@@ -25,46 +25,41 @@
                 android:id="@+id/curtain_tb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
                 app:logo="@drawable/back"
                 app:title="窗帘"
                 app:titleTextColor="@color/lighthui" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/open_all"
-                android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:layout_marginLeft="47dp"
+
+            <com.king.view.arcseekbar.ArcSeekBar
+                android:id="@+id/deep"
+                android:layout_width="match_parent"
+                android:layout_height="405dp"
                 android:layout_marginTop="80dp"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="#E7F6FF"
-                app:cardCornerRadius="35dp"
-                app:cardElevation="10dp">
+                app:arcDuration="3000"
+                app:arcEnabledDrag="true"
+                app:arcNormalColor="#E4A7BEFF"
+                app:arcProgressColor="#77CBFF"
+                app:arcShowLabel="true"
+                app:arcShowTick="true"
+                app:arcStartAngle="185"
+                app:arcStrokeCap="ROUND"
+                app:arcStrokeWidth="@dimen/dp_20"
+                app:arcSweepAngle="170"
+                app:arcThumbColor="#F6DBF9FF"
+                app:arcThumbRadius="4dp">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/curtain_open" />
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginTop="80dp"
-                    android:text="全开" />
-
-
-            </androidx.cardview.widget.CardView>
+            </com.king.view.arcseekbar.ArcSeekBar>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/close_curtain"
                 android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:layout_marginLeft="207dp"
-                android:layout_marginTop="80dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="400dp"
                 android:layout_marginRight="20dp"
                 android:backgroundTint="#E7F6FF"
-                app:cardCornerRadius="35dp"
+                app:cardCornerRadius="60dp"
                 app:cardElevation="10dp">
 
                 <ImageView
@@ -77,55 +72,73 @@
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="70dp"
                     android:text="全关" />
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/open_all"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="400dp"
+                android:layout_marginRight="20dp"
+                android:backgroundTint="#E7F6FF"
+                app:cardCornerRadius="60dp"
+                app:cardElevation="10dp">
 
-            <com.example.smarthome.View.ArcSeekBar
-                android:id="@+id/deep"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="250dp"
-                android:background="#DCF0FF"
-                app:arc_seek_bar_alpha="0.4"
-                app:indicator_color="#32B1C4"
-                app:left_padding="15dp"
-                app:right_padding="15dp" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/curtain_open" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="70dp"
+                    android:text="全开" />
+
+            </androidx.cardview.widget.CardView>
+
+
 
 
         </RelativeLayout>
+
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="7dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#E0E0E0"
             app:cardCornerRadius="35dp"
             app:cardElevation="10dp">
+
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:textColor="#000000"
                 android:text="设备已连接"
-                android:textSize="20dp"/>
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
             <TextView
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="210dp"
-                android:textColor="#00515E"
+                android:layout_marginLeft="220dp"
                 android:text="删除设备"
-                android:textSize="13dp"/>
+                android:textColor="#00515E"
+                android:textSize="13dp" />
 
         </androidx.cardview.widget.CardView>
 
 
+    </LinearLayout>
+
 </LinearLayout>
-
-</ScrollView>
-
 

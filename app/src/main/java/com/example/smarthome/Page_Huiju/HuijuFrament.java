@@ -1,4 +1,4 @@
-package com.example.smarthome.Objects.Page_Huiju;
+package com.example.smarthome.Page_Huiju;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -14,6 +14,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.smarthome.Database.Device;
+import com.example.smarthome.Database.Scene.C_Time;
+import com.example.smarthome.Database.Scene.Condition;
+import com.example.smarthome.Database.Scene.Mission;
+import com.example.smarthome.Database.Scene.S_Device;
 import com.example.smarthome.Database.Scene.Scene;
 import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.R;
@@ -143,34 +147,26 @@ public class HuijuFrament extends Fragment {
         });
         //TODO 设备显示离线
         huiJu_recyclerView();
-
         initData();
-
+        deleteData();
     }
-
+    private void deleteData(){
+        List<Device> deviceList=LitePal.findAll(Device.class);
+        for(int i=0;i<deviceList.size();i++){
+            if(Integer.valueOf(deviceList.get(i).getDevice_type(),16)>10||Integer.valueOf(deviceList.get(i).getDevice_type(),16)<0)
+            {
+                int id=deviceList.get(i).getId();
+                LitePal.deleteAll(Device.class,"id = ?",id+"");
+            }
+        }
+    }
     private void initview() {
         toolbar1=getActivity().findViewById(R.id.huiju_tb);
         mPullNewHeader=getActivity().findViewById(R.id.extend_header);
         mPullExtendLayout=getActivity().findViewById(R.id.pull_extend);
         mListHeader=mPullNewHeader.getRecyclerView();
 
-//        mListHeader.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
     }
-//    private void initdata() {
-//        mDatas.add("窗帘");
-//        mDatas.add("空调");
-//        mDatas.add("灯光");
-//        mDatas.add("智能门锁");
-//        mDatas.add("音响");
-//        mDatas.add(" ＋ ");
-//        mListHeader.setAdapter(new ExtendHeadAdapter(mDatas).setItemClickListener(new CommonAdapter.ItemClickListener() {
-//            @Override
-//            public void onItemClicked(int position, View view) {
-//                Toast.makeText(getActivity(),mDatas.get(position) + " 功能待实现",Toast.LENGTH_SHORT).show();
-//            }
-//        }));
-//
-//    }
 
     private void huiJu_recyclerView() {
         huiju=(RecyclerView)getActivity().findViewById(R.id.add_view);
@@ -178,6 +174,12 @@ public class HuijuFrament extends Fragment {
         List<Scene> scenes=new ArrayList<>();
         if(!sceneList.isEmpty())
             scenes.add(sceneList.get(0));
+        else {
+            Scene scene=new Scene();
+            scene.setSchedule("1");
+            scenes.add(scene);
+        }
+
         MyAdapter myAdapter=new MyAdapter(scenes);
         myAdapter.setContext(getContext());
         huiju.setAdapter(myAdapter);
@@ -192,11 +194,8 @@ public class HuijuFrament extends Fragment {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer integer, int direction) {
                 if (direction == CardConfig.SWIPED_LEFT) {
                     // 向左滑动
-                    //TODO 倒叙添加
                     List<Scene> sceneList1=new ArrayList<>();
                     sceneList1.clear();
-                    //9
-                    //8
                     if(count+1<sceneList.size()){
                         count++;
                         sceneList1.add(sceneList.get(count));
@@ -206,7 +205,6 @@ public class HuijuFrament extends Fragment {
                     }
                     myAdapter.setSceneList(sceneList1);
                     myAdapter.notifyDataSetChanged();
-                    //要不每次只传入一个scene，
                 } else {
                     // 向右滑动
                     List<Scene> sceneList1=new ArrayList<>();
@@ -232,15 +230,6 @@ public class HuijuFrament extends Fragment {
                         huiju.getAdapter().notifyDataSetChanged();
                     }
                 });
-//        huiju.setHasFixedSize(true);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
-//       huiju.setLayoutManager(gridLayoutManager);
-//        ArrayList<ExtendHeatHelper> addHomeHelpers = new ArrayList<>();
-//        addHomeHelpers.add(new ExtendHeatHelper(R.drawable.drawing_room, "客厅"));
-//        addHomeHelpers.add(new ExtendHeatHelper(R.drawable.toilet, "卫生间"));
-//        addHomeHelpers.add(new ExtendHeatHelper(R.drawable.bedroom, "卧室"));
-//        addHomeAdapter=new AddHomeAdapter(addHomeHelpers);
-//        huiju.setAdapter(addHomeAdapter);
 
             }
         });
@@ -284,13 +273,19 @@ public class HuijuFrament extends Fragment {
             list.add(R.drawable.drwaing);
             list.add(R.drawable.toilet2);
             avatarImageView.setImageResource(list.get(random));
+
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context, More.class);
-                    int id=sceneList.get(holder.getAdapterPosition()).getId();
-                    intent.putExtra(Scene.ID,id);
-                    context.startActivity(intent);
+                    if(sceneList.get(0).getSchedule()!=null){
+                    }else{
+                        Intent intent=new Intent(context, More.class);
+                        int id=sceneList.get(holder.getAdapterPosition()).getId();
+                        intent.putExtra(Scene.ID,id);
+                        context.startActivity(intent);
+                    }
+
                 }
             });
             ((MyViewHolder) holder).open_scene.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -304,7 +299,6 @@ public class HuijuFrament extends Fragment {
                     //场景名长度
                     String validData,validDataLength;
                     String innerData=null;
-
                     if(switch_i==0){
                         validData=getValidData("07",name,innerData);//00是内嵌数据长度
                         //创建场景
@@ -321,7 +315,6 @@ public class HuijuFrament extends Fragment {
 
                 }
             });
-            //TODO 场景好像化冻换不了
             ((MyViewHolder) holder).viewName.setText(sceneList.get(position).getName());
         }
         @Override

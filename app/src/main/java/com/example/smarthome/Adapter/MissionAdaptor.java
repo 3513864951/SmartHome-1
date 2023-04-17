@@ -16,6 +16,7 @@ import com.example.smarthome.Database.Scene.Condition;
 import com.example.smarthome.Database.Scene.Mission;
 import com.example.smarthome.Database.Scene.S_Device;
 import com.example.smarthome.R;
+import com.example.smarthome.Scene.SmartDevice.Set_Huminity;
 import com.example.smarthome.Scene.SmartDevice.Set_air;
 import com.example.smarthome.Scene.SmartDevice.Set_curtain;
 import com.example.smarthome.Scene.SmartDevice.Set_lights;
@@ -111,72 +112,14 @@ public class MissionAdaptor  extends RecyclerView.Adapter<MissionAdaptor.ViewHol
                 case 3:holder.imageView.setImageResource(R.drawable.adjust_lights);category="灯光控制";break;
                 case 4:holder.imageView.setImageResource(R.drawable.air_condition_smart);category="空调控制";break;
                 case 5:holder.imageView.setImageResource(R.drawable.curtain_open_selected);category="窗帘控制";break;
+                case 6:holder.imageView.setImageResource(R.drawable.humidifier);category="加湿器控制";break;
                 default:
                     holder.imageView.setImageResource(R.drawable.bg_swpt);category="这绝对出bug了！";break;
         }
         holder.ConAndMiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence type=holder.itemName.getText();
-                //TODO 忘了还有传感器，要命，记得还有上一个活动向这个活动的传入数据
-                //TODO 条件那就显示一个智能设备控制，点进去就是智能设备的列表，这需要保存设备的自定义名称
 
-                switch (type.toString()){
-                    case "智能设备":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent=new Intent(context, SmartDeviceList.class);
-                        intent.putExtra("time",time);
-                        context.startActivity(intent);
-                        break;
-                    case "点击执行":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent1=new Intent(context, SmartDeviceList.class);
-                        intent1.putExtra("time",time);
-                        context.startActivity(intent1);
-                        break;
-                    case "场景控制":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent2=new Intent(context, SmartDeviceList.class);
-                        intent2.putExtra("time",time);
-                        context.startActivity(intent2);
-                        break;
-                    case "传感器":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent3=new Intent(context, SmartDeviceList.class);
-                        intent3.putExtra("time",time);
-                        context.startActivity(intent3);
-                        break;
-                    case "执行的场景":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent4=new Intent(context, SmartDeviceList.class);
-                        intent4.putExtra("time",time);
-                        context.startActivity(intent4);
-                        break;
-                    case "系统通知":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent5=new Intent(context, SmartDeviceList.class);
-                        intent5.putExtra("time",time);
-                        context.startActivity(intent5);
-                        break;
-                    case "灯光控制":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent6=new Intent(context, Set_lights.class);
-                        intent6.putExtra("time",time);
-                        context.startActivity(intent6);
-                        break;
-                    case "空调控制":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent7=new Intent(context, Set_air.class);
-                        intent7.putExtra("time",time);
-                        context.startActivity(intent7);
-                        break;
-                    case "窗帘控制":
-                        //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                        Intent intent8=new Intent(context, Set_curtain.class);
-                        intent8.putExtra("time",time);
-                        context.startActivity(intent8);
-                        break;
-                }
             }
         });
 

@@ -48,6 +48,15 @@
         android:textColor="@color/lighthui"
         android:layout_marginTop="25dp"
         android:drawableEnd="@drawable/enroll_next"/>
-
+    <TextView
+        android:id="@+id/set_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text=" 加湿器"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/lighthui"
+        android:layout_marginTop="25dp"
+        android:drawableEnd="@drawable/enroll_next"/>
 
 </LinearLayout>

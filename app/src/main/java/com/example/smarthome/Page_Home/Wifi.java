@@ -11,7 +11,9 @@ import android.os.Bundle;
 import com.example.smarthome.R;
 
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class Wifi extends AppCompatActivity {
 
     @Override

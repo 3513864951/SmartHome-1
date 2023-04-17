@@ -1,5 +1,8 @@
 package com.example.smarthome.Database;
 
+/**
+ * @description 弃用
+ */
 public class AirConditioner {
     private int source_command;//种类，根据种类查询
     private String source_long_address;

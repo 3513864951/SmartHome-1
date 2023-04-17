@@ -38,10 +38,6 @@ public class WidgetProvider extends AppWidgetProvider {
         if (ACTION_UPDATE_ALL.equals(action)) {
             updateAllAppWidgets(context, AppWidgetManager.getInstance(context));
         }
-//        else if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE)) {
-//            mIndex = 0;
-//            updateAllAppWidgets(context, AppWidgetManager.getInstance(context));
-//        }
     }
 
     // 更新所有的 widget

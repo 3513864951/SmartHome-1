@@ -49,11 +49,6 @@ public class AddSenseAdapter extends RecyclerView.Adapter<AddSenseAdapter.ViewHo
                 intent.putExtra("sense", sense);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 parent.getContext().startActivity(intent);
-//                关于Activity跳转，Context中有一个startActivity方法，
-//                Activity继承自Context，重载了startActivity方法。
-//                如果使用Activity的startActivity方法，不会有任何限制，
-//                而如果使用Context的startActivity方法的話，就需要开启一个新的的task，
-//                遇到这个异常，是因为使用了Context的startActivity方法。解决办法是，加一个flag。
             }
         });
 

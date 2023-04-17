@@ -46,7 +46,7 @@ public class SmartFragment extends Fragment {
     private ImageView sensor;
 
     String name_m;
-    private RecyclerView recy_scene,online_device;
+    private RecyclerView recy_scene,online_device,outline_device;
     AddSmartAdapter rvadapter;
     AddModelAdapter2 addModelAdapter2;
     private int i=0;
@@ -63,7 +63,7 @@ public class SmartFragment extends Fragment {
 //        recy_scene=getActivity().findViewById(R.id.recy_scene);
         sensor=getActivity().findViewById(R.id.add_sense_iv);
         online_device=getActivity().findViewById(R.id.add_smart);
-//        outline_device=getActivity().findViewById(R.id.outline_device);
+       outline_device=getActivity().findViewById(R.id.outline_device);
         super.onActivityCreated(savedInstanceState);
         add=getActivity().findViewById(R.id.add_home);
         add.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,7 @@ public class SmartFragment extends Fragment {
                 tempList=LitePal.findAll(Temp.class);
                 if(!tempList.isEmpty())//如果暂存数据库不为空，就遍历清空Scene,device.....中与temp有关的数据
                 {
-                        //TODO 刚进入界面的那个pull服务器存的用户已连接电器数据，要加定时关闭
+
                     for (int j = 0; j < tempList.size(); j++) {
                         String temp_id=String.valueOf(tempList.get(j).getId());
                         LitePal.deleteAll(C_Time.class,"temp_id=?",temp_id);
@@ -105,9 +105,9 @@ public class SmartFragment extends Fragment {
             }
         });
 
-        recyclerView();
+        deleteData();
         initRecyclerViewOnline();
-//        initRecyclerViewOutline();
+        initRecyclerViewOutline();
         recyclerView3();
 //        initSceneRecyclerView();
     }
@@ -176,11 +176,18 @@ public class SmartFragment extends Fragment {
 //
 //
 //}
-    private void recyclerView() {
-
+    private void deleteData(){
+        List<Device> deviceList= LitePal.findAll(Device.class);
+        for(int i=0;i<deviceList.size();i++){
+            if(Integer.valueOf(deviceList.get(i).getDevice_type(),16)>10||Integer.valueOf(deviceList.get(i).getDevice_type(),16)<0)
+            {
+                int id=deviceList.get(i).getId();
+                LitePal.deleteAll(Device.class,"id = ?",id+"");
+            }
+        }
     }
     private void initRecyclerViewOnline(){
-        onlineDeviceList=LitePal.findAll(Device.class);
+        onlineDeviceList=LitePal.where("flag= ? and network_flag = ?","1","01").find(Device.class);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         online_device.setLayoutManager(linearLayout);
         ManageAdaptor manageAdaptor = new ManageAdaptor(onlineDeviceList);
@@ -190,16 +197,16 @@ public class SmartFragment extends Fragment {
 
     }
 
-//    private void initRecyclerViewOutline(){
-//        outlineDeviceList=LitePal.where("flag= ? and isUpdate = ?","1","0").find(Device.class);
-//        LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-//        outline_device.setLayoutManager(linearLayout);
-//        ManageAdaptor manageAdaptor = new ManageAdaptor(outlineDeviceList);
-//        manageAdaptor.InputFlag(1);
-//        outline_device.setAdapter(manageAdaptor);
-//        manageAdaptor.notifyDataSetChanged();
-//    }
-    //TODO Scene的recyclerView
+    private void initRecyclerViewOutline(){
+        outlineDeviceList=LitePal.where("flag= ? and network_flag = ?","1","00").find(Device.class);
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        outline_device.setLayoutManager(linearLayout);
+        ManageAdaptor manageAdaptor = new ManageAdaptor(outlineDeviceList);
+        manageAdaptor.InputFlag(1);
+        outline_device.setAdapter(manageAdaptor);
+        manageAdaptor.notifyDataSetChanged();
+    }
+
 //    private void initSceneRecyclerView(){
 //        sceneList.clear();
 //        sceneList=LitePal.findAll(Scene.class);
@@ -212,7 +219,7 @@ public class SmartFragment extends Fragment {
     private void initContent()
     {
         deviceList.clear();
-        //TODO network到底是干嘛的emm
+
         devicelist= LitePal.order("device_type desc").where("flag= ? and network_flag = ?","1","1").find(Device.class);
         for(Device devices:devicelist) {
             int count=0;

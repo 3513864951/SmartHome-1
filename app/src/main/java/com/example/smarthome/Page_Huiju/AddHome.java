@@ -1,4 +1,4 @@
-package com.example.smarthome.Objects.Page_Huiju;
+package com.example.smarthome.Page_Huiju;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//TODO huiJu没换
+/**
+ * @description 添加房间
+ */
 public class AddHome extends AppCompatActivity {
     View view;
     Toolbar addHome_back;
@@ -46,6 +48,7 @@ public class AddHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_home);
         addHome_back=findViewById(R.id.addHome_back);
+        setSupportActionBar(addHome_back);
         device_list=findViewById(R.id.device_list);
         Intent intent=getIntent();
         time=intent.getStringExtra("time");
@@ -53,6 +56,14 @@ public class AddHome extends AppCompatActivity {
             addHomes=LitePal.where("time = ?",time).findFirst(AddHomes.class);
             id=addHomes.getId();
         }
+        else
+            addHomes=new AddHomes();
+
+
+        LitePal.deleteAll(AddHomes.class,"flag= ?","temp");
+        AddHomes addHomes=new AddHomes();
+        addHomes.setFlag("temp");
+        addHomes.save();
         init();
         recyclerView();
 
@@ -67,6 +78,8 @@ public class AddHome extends AppCompatActivity {
         switch (item.getItemId()) {//判断点击的按钮是哪个
             case R.id.add_device:
                 Intent intent=new Intent(AddHome.this,HomeDeviceManage.class);
+                if(time!=null)
+                    intent.putExtra("id",id);
                 startActivity(intent);
                 break;
             default:
@@ -97,7 +110,23 @@ public class AddHome extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
                 Date date=new Date(System.currentTimeMillis());
                 String time1=simpleDateFormat.format(date);
-                AddHomes addHomes=new AddHomes();
+                AddHomes addHomes1=LitePal.where("flag = ?","temp").findFirst(AddHomes.class);
+                int idd=addHomes1.getId();
+                List<Device> deviceList=new ArrayList<>();
+                deviceList=LitePal.where("addHomes_id = ?",idd+"").find(Device.class);
+                for(int i=0;i<deviceList.size();i++){
+                    deviceList.get(i).setAddHomes(null);
+                    deviceList.get(i).save();
+                }
+                for(int i=0;i<addHomes1.getStrings().size();i++){
+                    List<Device> deviceList1=LitePal.findAll(Device.class);
+                    for(int j=0;j<deviceList1.size();j++){
+                        if(deviceList1.get(j).getTarget_long_address().equals(addHomes1.getStrings().get(i))){
+                            addHomes.getDeviceList().add(deviceList1.get(j));
+                            break;
+                        }
+                    }
+                }
                 addHomes.setHome(name_hm);
                 addHomes.setTime(time1);
                 if(time==null)
@@ -110,7 +139,7 @@ public class AddHome extends AppCompatActivity {
     }
     private void recyclerView(){
         deviceList=LitePal.where("addHomes_id = ?",id+"").find(Device.class);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(AddHome.this);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(AddHome.this,LinearLayoutManager.HORIZONTAL,false);
         device_list.setLayoutManager(layoutManager);
         ManageAdaptor manageAdaptor=new ManageAdaptor(deviceList);
         device_list.setAdapter(manageAdaptor);

@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.example.smarthome.Page_Samrt.AdustTheCurtain;
 import com.example.smarthome.R;
-
+/**
+ * @description 设置
+ */
 public class Set extends AppCompatActivity {
     Toolbar set_tb;
     TextView textView;

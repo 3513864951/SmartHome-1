@@ -1,5 +1,7 @@
 package com.example.smarthome.Helper;
-
+/**
+ * @description 弃用
+ */
 public class AddSmartHelper {
     int image;
     String title,description;

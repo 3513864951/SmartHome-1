@@ -7,37 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".Page_Samrt.AdjustTheMusic"
     android:orientation="vertical"
-    android:background="#D1FEFEFE">
+    android:background="#81A1A1">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/air_tb"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         app:logo="@drawable/back"
         app:title="音乐"
         app:titleTextColor="@color/lighthui"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_wind"
-        android:layout_width="290dp"
-        android:layout_height="280dp"
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
-        android:backgroundTint="#FFFFFF"
-        app:cardCornerRadius="35dp"
-        app:cardElevation="5dp"></androidx.cardview.widget.CardView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"/>
+        android:background="@drawable/jiashiqi"
+        android:layout_marginTop="@dimen/dp_50"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_music">
+        android:layout_marginTop="@dimen/dp_70"
+        android:background="@drawable/bg2">
 
+        <ImageView
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/dp_80"
+            android:background="@drawable/begin" />
 
-
-
-
+        <ImageView
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="@dimen/dp_80"
+            android:background="@drawable/stop" />
     </RelativeLayout>
+
 
 </LinearLayout>

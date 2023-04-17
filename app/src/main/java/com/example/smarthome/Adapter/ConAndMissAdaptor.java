@@ -1,5 +1,6 @@
 package com.example.smarthome.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.example.smarthome.Page_Samrt.AdjustTheLights;
 import com.example.smarthome.Page_Samrt.AdjustTheMusic;
 import com.example.smarthome.Page_Samrt.AdustTheCurtain;
 import com.example.smarthome.R;
+import com.example.smarthome.Scene.SceneSensor;
 import com.example.smarthome.Scene.SmartDevice.SmartDeviceList;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
     private String air_temp;
     private String time;
     private int judge;
-
+    private Context context;
     /**
      * @description
      * 0为条件
@@ -58,6 +60,9 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
     }
     public ConAndMissAdaptor(List<Condition> conditionList){
         this.conditionList=conditionList;
+    }
+    public void setContext(Context context){
+        this.context=context;
     }
     public ConAndMissAdaptor(List<Mission> missionList,int flag){
         this.missionList=missionList;
@@ -99,74 +104,19 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
     public ConAndMissAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.conandmimsslist,parent,false);
         final ViewHolder holder=new ViewHolder(view);
-        holder.ConAndMiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(flag==0){
 
-                    CharSequence type=holder.itemName.getText();
-                    //TODO 忘了还有传感器，要命，记得还有上一个活动向这个活动的传入数据
-                    //TODO 条件那就显示一个智能设备控制，点进去就是智能设备的列表，这需要保存设备的自定义名称
-
-                    switch (type.toString()){
-                        case "智能设备":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent.putExtra("time",time);
-                            view.getContext().startActivity(intent);
-                            break;
-                        case "点击执行":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent1=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent1.putExtra("time",time);
-                            view.getContext().startActivity(intent1);
-                            break;
-                        case "场景控制":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent2=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent2.putExtra("time",time);
-                            view.getContext().startActivity(intent2);
-                            break;
-                        case "传感器":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent3=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent3.putExtra("time",time);
-                            view.getContext().startActivity(intent3);
-                            break;
-                        case "执行的场景":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent4=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent4.putExtra("time",time);
-                            view.getContext().startActivity(intent4);
-                            break;
-                        case "系统通知":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent5=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent5.putExtra("time",time);
-                            view.getContext().startActivity(intent5);
-                            break;
-                        case "执行的设备":
-                            //TODO 由于智能设备合并了，因此如果只传一个condition的事件肯定不行，所以还是传入场景的时间，通过场景时间找到所有设备
-                            Intent intent6=new Intent(parent.getContext(), SmartDeviceList.class);
-                            intent6.putExtra("time",time);
-                            view.getContext().startActivity(intent6);
-                            break;
-
-
-                    }
-
-
-                }
-
-
-            }
-        });
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ConAndMissAdaptor.ViewHolder holder, int position) {
+        time=conditionList.get(position).getTime();
+        holder.ConAndMiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         String category="没有匹配项为什么显示emm";
         //分类
         if(flag==0){
@@ -187,6 +137,7 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
                 case 1:holder.imageView.setImageResource(R.drawable.scene);category="执行的场景";break;
                 case 2:holder.imageView.setImageResource(R.drawable.message);category="系统通知";break;
                 case 3:holder.imageView.setImageResource(R.drawable.ic_dashboard_black_24dp);category="执行的设备";break;
+                case 5:holder.imageView.setImageResource(R.drawable.sense);
                 default:
                     holder.imageView.setImageResource(R.drawable.bg_swpt);category="这绝对出bug了！";break;
             }
@@ -199,11 +150,7 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
 
     @Override
     public int getItemCount() {
-        if(flag==0)
             return conditionList.size();
-        else if(flag==1)
-            return missionList.size();
-        return 0;
     }
     // 定义 Item 点击事件的监听器接口
     public interface OnItemClickListener {

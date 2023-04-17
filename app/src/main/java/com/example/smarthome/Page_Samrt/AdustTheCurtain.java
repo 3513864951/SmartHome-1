@@ -18,7 +18,7 @@ import com.example.smarthome.Database.Device;
 import com.example.smarthome.Database.Room;
 import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.R;
-import com.example.smarthome.View.ArcSeekBar;
+import com.king.view.arcseekbar.ArcSeekBar;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.litepal.LitePal;
@@ -34,12 +34,10 @@ public class AdustTheCurtain extends AppCompatActivity {
     private Spinner spinner_choose_home;
     private Spinner spinner_choose_model;
     private CardView bt_openAll;
-//    private Button bt_openMid;
     private CardView bt_closeCurtain;
     private int home_choose;
     private String s_home_choose;
-    private  ArcSeekBar deep;
-    //下拉框进入默认是全屋，进入界面时应该根服务器同步数据，设置当前设备状态是怎么样的，那个seekbar也一样，要根据实际情况来变
+    private ArcSeekBar deep;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +47,6 @@ public class AdustTheCurtain extends AppCompatActivity {
         deep=findViewById(R.id.deep);
 
         bt_closeCurtain = findViewById(R.id.close_curtain);
-//        initDropdown1();
         clientMQTT = new ClientMQTT("light");
         try {
             clientMQTT.Mqtt_innit();
@@ -62,27 +59,32 @@ public class AdustTheCurtain extends AppCompatActivity {
         Device device=LitePal.where("target_long_address = ?",target_long_address).findFirst(Device.class);
         String target_short_address=device.getTarget_short_address();
         String device_type=device.getDevice_type();
-
-        deep.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        deep.setOnChangeListener(new ArcSeekBar.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStartTrackingTouch(boolean isCanDrag) {
+
+            }
+
+            @Override
+            public void onProgressChanged(float progress, float max, boolean fromUser) {
                 String extent=String.valueOf(progress);
                 if(extent.length()==1){
                     extent="0"+extent;
                 }
                 clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x"+extent,"0x01");
+
+            }
+            @Override
+            public void onStopTrackingTouch(boolean isCanDrag) {
+
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onSingleTapUp() {
 
             }
         });
+
         bt_openAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,30 +99,7 @@ public class AdustTheCurtain extends AppCompatActivity {
             }
         });
     }
-//        private void initDropdown1() {
-//            ArrayAdapter starAdapter1= ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
-//            Spinner sp_dropdown=findViewById(R.id.curtain_choose_home);
-//            starAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//            sp_dropdown.setAdapter(starAdapter1);
-////        sp_dropdown.setSelection(0);
-//            sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int arg1, long id) {
-////                Toast.makeText(AdustTheCurtain.this, String.valueOf(arg1), Toast.LENGTH_SHORT).show();
-////                Toast.makeText(AdustTheCurtain.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-//                    home_choose=arg1;//转换为16进制加一个0x0
-//                    s_home_choose="0x0"+home_choose;
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//
-//                }
-//            });
-//
-//
-//        }
+
     }
 
 

@@ -42,8 +42,6 @@ public class AdjustTheAirCondition extends AppCompatActivity {
     private String target_short_address;
     private String device_type;
     private AirBoardView airview;
-//            private CustomizeGoodsAddView customizeGoodsAddView;
-//            private static int temperature;
             private int maxNum=30;
             private int minNum=16;
             private String temperature;
@@ -77,7 +75,6 @@ public class AdjustTheAirCondition extends AppCompatActivity {
             public void onClick(View v) {
                 finish();}
         });
-//        inithome();
         rote();
         airview = (AirBoardView) findViewById(R.id.airView);
 
@@ -92,8 +89,6 @@ public class AdjustTheAirCondition extends AppCompatActivity {
             clientMQTT.publishMessagePlus(null,"0x"+target_short_address,device_type,"0x08"+hexTemp,"0x02");
             }
         });
-//        initwindspeed();
-//        initadd();
     }
 
         private void rote() {
@@ -180,77 +175,4 @@ public class AdjustTheAirCondition extends AppCompatActivity {
             });
 
         }
-//
-//    private void initadd() {
-//        customizeGoodsAddView=findViewById(R.id.customizeGoodsAddView);
-//        customizeGoodsAddView.setMaxValue(maxNum);
-//        customizeGoodsAddView.setMinValue(minNum);
-//        customizeGoodsAddView.setValue(temperature);//用来更新选择不同房间后下方温度的变化
-//        customizeGoodsAddView.setOnValueChangeListene(new CustomizeGoodsAddView.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(int value) {
-//                if(value>maxNum){
-//                    customizeGoodsAddView.setValue(maxNum);
-//
-//                }else{
-//
-//                }
-//            }
-//        });
-//    }
-
-
-//    private void initwindspeed() {
-//        ArrayAdapter starAdapter_airwindspeed = ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_wind_speed, android.R.layout.simple_spinner_item);
-//        Spinner sp_dropdown = findViewById(R.id.air_choose_windspeed);
-//        starAdapter_airwindspeed.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        sp_dropdown.setPrompt("请选择风速");
-//        sp_dropdown.setAdapter(starAdapter_airwindspeed);
-//        sp_dropdown.setSelection(0);
-//        sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parenAt, View view, int arg2, long id) {
-//               List<Device> deviceList= LitePal.where("source_command= ?","0x02").find(Device.class);
-//                for(Device devices:deviceList) {
-//                    String source_long_address = devices.getSource_long_address();
-////                    temperature = devices.getAir_temp();
-//                    String tem=devices.getSource_data();
-//                    String ee=tem.substring(2,3);
-//                    temperature=Integer.parseInt(tem.substring(2,4));
-////温度不显示，只是用来判断工作状态  temp1>temp2-->制热 temp1(空调吹气口的温度，temp2空调下部的温度)
-//                //Litepal好像没存
-//                }
-//                initadd();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//    }
-
-//    private void inithome() {
-//        ArrayAdapter starAdapter_airhome = ArrayAdapter.createFromResource(getApplicationContext(), R.array.choose_home, android.R.layout.simple_spinner_item);
-//        Spinner sp_dropdown = findViewById(R.id.air_choose_home);
-//        sp_dropdown.setDropDownVerticalOffset(android.R.layout.simple_spinner_dropdown_item);
-//        sp_dropdown.setPrompt("请选择房间");
-//        sp_dropdown.setAdapter(starAdapter_airhome);
-//        sp_dropdown.setSelection(0);
-//        sp_dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parenAt, View view, int arg1, long id) {
-//
-//                //房间选完后在调用一次init方法，大概能刷新数据？god sees
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//    }
 }

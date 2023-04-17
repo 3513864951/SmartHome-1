@@ -46,6 +46,7 @@ public class Set_curtain extends AppCompatActivity {
         private ConstraintLayout constraintLayout;
         private Mission mission;
         private List<Integer> positionList=new ArrayList<>();
+        private List<Device> deviceChoose=new ArrayList<>();
         private int open=-1;
         private int close=-1;
         private static int deep=-1;
@@ -75,10 +76,18 @@ public class Set_curtain extends AppCompatActivity {
             for(int i=0;i<mission.getS_deviceList().size();i++){
                 String target_long_address=mission.getS_deviceList().get(i).getTarget_long_address();
                 Device device=LitePal.where("target_long_address = ?",target_long_address).findFirst(Device.class);
-                curtainList.add(device);
+                deviceChoose.add(device);
             }
-        }else
-            curtainList=LitePal.where("device_type = ? and flag = ? and use = ?","03","1","0").find(Device.class);
+        }
+        curtainList=LitePal.where("device_type = ? and flag = ? ","03","1").find(Device.class);
+        for (int i = 0; i < curtainList.size(); i++) {
+            String target_long_address=curtainList.get(i).getTarget_long_address();
+            for(int j=0;j<deviceChoose.size();j++)
+                if(target_long_address.equals(deviceChoose.get(j).getTarget_long_address())){
+                    curtainList.remove(i);
+                    break;
+                }
+        }
         recyclerView=findViewById(R.id.select_condition);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         curtainListAdaptor=new CurtainListAdaptor(this,R.layout.scene_curtainlist,curtainList);
@@ -175,9 +184,9 @@ public class Set_curtain extends AppCompatActivity {
                                     device.updateAll("target_long_address = ?",target_long_address);
                                     s_device.save();
                                 } else{
-                                    s_device.updateAll("target_long_address = ?", target_long_address);
-
-                                    mission.updateAll("time = ?",timeIn);
+                                    s_device.updateAll("target_long_address = ? and mission_id = ?", target_long_address,mission.getId()+"");
+                                    mission.updateAll("time = ? ",timeIn);
+                                    mission.save();
                                 }
                                 finish();
                             }
@@ -190,9 +199,9 @@ public class Set_curtain extends AppCompatActivity {
                     }
                 }else
                     Toast.makeText(Set_curtain.this,"请添加电器！",Toast.LENGTH_SHORT).show();
-
             }
         });
+
         scene_curtain.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

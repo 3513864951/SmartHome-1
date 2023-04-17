@@ -63,7 +63,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Objects.Page_Huiju.AddHome"
+            android:name=".Page_Huiju.AddHome"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Scene.SensorCondition"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Samrt.ChsngeTm"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -77,6 +91,21 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Scene.SensorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+                android:name=".Scene.SceneSensor"
+            android:launchMode="singleTask"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Page_Samrt.Add_Sense"
             android:exported="false">
             <meta-data
@@ -84,21 +113,36 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Objects.Page_Huiju.HomeDeviceManage"
+            android:name=".Page_Samrt.Humity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".Scene.SmartDevice.Set_Huminity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Objects.Page_Huiju.AddHome"
+            android:name=".Page_Huiju.HomeDeviceManage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Objects.Page_Huiju.HomeManageActivity"
+            android:name=".Page_Huiju.AddHome"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Page_Huiju.HomeManageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -315,7 +359,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Objects.Page_Huiju.ManageDevices"
+            android:name=".Page_Huiju.ManageDevices"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

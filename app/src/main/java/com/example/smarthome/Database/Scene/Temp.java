@@ -1,15 +1,18 @@
 package com.example.smarthome.Database.Scene;
 
+import com.example.smarthome.Database.Sensor;
+
 import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class Temp extends LitePalSupport {//暂时储存创建场景前的信息来进行显示
+/**
+ * @description 缓存场景
+ */
+public class Temp extends LitePalSupport {//缓存类，暂时储存创建场景前的信息来进行显示
     private Scene scene;//这个是condition属于什么场景
     private int id;
-    private String time;//创建新的Scene,寻找当前temp的办法就是通过看temp的time是否为null(new的时候就setTime),至于编辑Scene的temp就通过Scene去找
-    //由于这些设备的短地址和长地址重复，那么想要设置数据肯定要save，更新条件也要通过category和和一些其他的属性来判断，scene一定要有，指不定不同场景有这个设备，而这个设备的条件还都一样
+    private String time;//创建时间
 
     private List<S_Device> S_deviceList=new ArrayList<>();
     private String isClick="-1";/**
@@ -20,12 +23,18 @@ public class Temp extends LitePalSupport {//暂时储存创建场景前的信息
     private Scene m_scene;//被执行场景
     private List<Condition> conditionList=new ArrayList<>();//条件
     private List<Mission> missionList=new ArrayList<>();//条件
-    //暂时先不进行多场景关联把
+    private Sensor sensor;
 
-    // getter and setter methods
 
-    // 定义设备与房间之间的关联，使用litepal中的注解 @OneToMany
 
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
+    }
 
     public String getTime() {
         return time;

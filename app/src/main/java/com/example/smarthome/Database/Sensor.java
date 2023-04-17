@@ -1,25 +1,76 @@
 package com.example.smarthome.Database;
 
-import org.litepal.crud.LitePalSupport;
+import com.example.smarthome.Database.Scene.Condition;
+import com.example.smarthome.Database.Scene.Scene;
+import com.example.smarthome.Database.Scene.Temp;
 
+import org.litepal.crud.LitePalSupport;
+/**
+ * @description 传感器
+ */
 public class Sensor extends LitePalSupport {
     private int id;
     private String device_type;
-    private int flag;
+    private int flag;//1 2
+    private int upOrDown;//0  小于 1大于
     private String target_short_address;
+    private String target_long_address;
     private String controller_long_address;
     private String temp_air;//温度
     //只用temp和wetness
-    private String i_temp;
+    private String i_temp;// 1
     private String data;
     private String wetness;//空调湿度
-    private String i_wetness;//独立湿度
+    private String i_wetness;//独立湿度  //2
     private String smoking;
     private String valid_data;
     private String time;//点击传感器的时间，通过intent传过去，再通过litepal寻找到sensor
     private int isUpdate;
+    private Temp temp;
+    private Condition condition;
+    private Scene scene;
     //独立温度传感器
     private String temp_independent;
+
+    public String getTarget_long_address() {
+        return target_long_address;
+    }
+
+    public void setTarget_long_address(String target_long_address) {
+        this.target_long_address = target_long_address;
+    }
+
+    public Temp getTemp() {
+        return temp;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public void setTemp(Temp temp) {
+        this.temp = temp;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+
+    public int getUpOrDown() {
+        return upOrDown;
+    }
+
+    public void setUpOrDown(int upOrDown) {
+        this.upOrDown = upOrDown;
+    }
 
     public String getData() {
         return data;

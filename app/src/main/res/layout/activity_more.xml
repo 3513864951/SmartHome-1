@@ -8,12 +8,37 @@
     tools:context=".Scene.More"
     android:background="#FFFFFF"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/back"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/back"
+            app:title="加湿器设置"
+            app:titleTextColor="@color/lighthui"></androidx.appcompat.widget.Toolbar>
+
+        <Button
+            android:id="@+id/delete_scene"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/_dele"
+            />
+
+    </LinearLayout>
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/main_home"
         android:layout_gravity="center"
         android:layout_marginTop="120dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
     <EditText
         android:id="@+id/model_name"
         android:layout_width="match_parent"
@@ -40,12 +65,7 @@
             android:id="@+id/select_condition"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/smart_add"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recy_condition"
@@ -61,10 +81,19 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/add_condition"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="250dp"
+                android:background="@drawable/smart_add" />
+
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="110dp"
@@ -79,12 +108,7 @@
             android:id="@+id/select_tesk"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/smart_add"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recy_mission"
                 android:layout_width="match_parent"
@@ -98,6 +122,13 @@
                 android:text="选择任务"
                 android:textSize="16dp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/add_mission"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="250dp"
+                android:background="@drawable/smart_add" />
 
 
         </RelativeLayout>
@@ -115,12 +146,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         app:cornerRadius="4dp"/>
-<Button
-    android:id="@+id/delete_scene"
-    android:layout_width="60dp"
-    android:layout_height="50dp"
-    android:background="@drawable/deletedevice"
-    />
+
 
 
 

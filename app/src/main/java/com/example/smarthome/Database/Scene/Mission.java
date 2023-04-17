@@ -4,7 +4,9 @@ import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 场景任务
+ */
 public class Mission extends LitePalSupport {
     private int id;
     private Temp temp;
@@ -22,7 +24,7 @@ public class Mission extends LitePalSupport {
     //3 light
     //4 air
     //5 curtain
-
+//6 加湿器
 
     public int getId() {
         return id;

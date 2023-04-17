@@ -14,7 +14,9 @@ import com.example.smarthome.Database.AddSense;
 import com.example.smarthome.R;
 
 import org.litepal.LitePal;
-
+/**
+ * @description 弃用
+ */
 public class Add_Sense extends AppCompatActivity {
     Button create_sense;
     EditText sense_name;

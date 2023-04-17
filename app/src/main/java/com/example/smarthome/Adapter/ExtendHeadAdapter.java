@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.base.CommonAdapter;
 import com.example.smarthome.Adapter.base.ViewHolder;
-import com.example.smarthome.Database.AddDevice;
+
 import com.example.smarthome.Database.AddModel;
 
 import com.example.smarthome.Database.Device;
@@ -89,7 +89,7 @@ public class ExtendHeadAdapter extends RecyclerView.Adapter<ExtendHeadAdapter.Vi
     public void onBindViewHolder(@NonNull ExtendHeadAdapter.ViewHolder holder, int position) {
         Device device=deviceList.get(position);
         holder.d_device.setText(deviceList.get(0).getName());
-        holder.device_category_display.setText(deviceList.get(count).getTarget_long_address());
+        holder.device_category_display.setText(deviceList.get(position).getTarget_long_address());
     }
 
 

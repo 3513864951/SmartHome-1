@@ -76,10 +76,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     //在这里可以设置最后一位或者特定位置不可拖动，实际需求可能会用到
     @Override
     public void onMove(int fromPosition, int toPosition) {
-        //注释部分即为设置最后一个位置不可拖动改变
-//        if (fromPosition==results.size()-1 || toPosition==results.size()-1){
-//            return;
-//        }
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
                 Collections.swap(results, i, i + 1);

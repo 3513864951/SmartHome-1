@@ -1,7 +1,9 @@
 package com.example.smarthome.Json;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @description 生成JSON字符串
+ */
 public class JsonString {
     private String timestamp;
     private String firmware_version;
@@ -36,20 +38,5 @@ public class JsonString {
                 "\"valid_data_length\":\""+valid_data_length+"\""+
                 "}";
     }
-//    public String tString() {
-//        return "{\"timestamp\":\""+timestamp+"\"," +
-//                "\"firmware_version\":\""+firmware_version+"\"," +
-//                "\"device_name\":\" "+device_id+"\"," +
-//                "\"device_id\":\" "+device_id+"\"," +
-//                "\"other_data\": {" +
-//                "\"misc\":\""+misc+"\"}," +
-//                "\"peripherals\": [" +
-//                "{" +
-//                "\"target_short_address\":\""+target_short_address+" \"," +
-//                "\"target_command\": \""+target_command+"\"," +
-//                "\"timestamp\": \""+timestamp+"\"," +
-//                "\"target_data\":\" "+target_data+"\"," +
-//                "\"misc\":{\"allow_access\":\""+target_data + "\"}}" + "]" +
-//                "}";
-//    }
+
 }
