@@ -1,13 +1,11 @@
 package com.example.smarthome.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,9 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.smarthome.Helper.AddSmartHelper;
+import com.example.smarthome.Database.Helper.AddSmartHelper;
 import com.example.smarthome.R;
-import com.example.smarthome.Scene.More;
 import com.example.smarthome.View.DeleteRecyclerViewDiy.MoveTouchCallback;
 
 import java.util.Collections;

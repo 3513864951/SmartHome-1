@@ -12,7 +12,9 @@ import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.R;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
-
+/**
+ * @description 加湿器
+ */
 public class Humity extends AppCompatActivity {
     CardView open,close;
     ClientMQTT clientMQTT;

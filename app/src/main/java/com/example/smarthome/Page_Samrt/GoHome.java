@@ -11,7 +11,9 @@ import android.widget.Spinner;
 
 
 import com.example.smarthome.R;
-
+/**
+ * @description 弃用
+ */
 public class GoHome extends AppCompatActivity {
     Toolbar go_home_tb;
     @Override

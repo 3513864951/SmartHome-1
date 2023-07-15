@@ -63,7 +63,7 @@ public class HumidifierAdaptor extends RecyclerView.Adapter<HumidifierAdaptor.Vi
     @NonNull
     @Override
     public HumidifierAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.add_smart,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.scene_airlist,parent,false);
         final HumidifierAdaptor.ViewHolder holder=new HumidifierAdaptor.ViewHolder(view);
         view.setOnClickListener(new View.OnClickListener() {
             @Override

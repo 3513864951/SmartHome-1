@@ -15,7 +15,9 @@ import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 传感器数据显示
+ */
 public class SensorActivity extends AppCompatActivity {
     private List<Sensor> sensorList=new ArrayList<>();
     RecyclerView recyclerView;

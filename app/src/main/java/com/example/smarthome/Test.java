@@ -17,7 +17,9 @@ import com.example.smarthome.Scan.ScanActivity;
 import org.litepal.LitePal;
 
 import java.util.List;
-
+/**
+ * @description 只为测试
+ */
 public class Test extends AppCompatActivity {
     private Button test_light_normal;
     private Button test_light_open;

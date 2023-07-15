@@ -17,7 +17,9 @@ import com.example.smarthome.Scene.Time.TimeActivity;
 import com.example.smarthome.View.CustomizeGoodsAddView;
 
 import org.litepal.LitePal;
-
+/**
+ * @description 场景条件活动
+ */
 public class ConditionActivity extends AppCompatActivity {
     LinearLayout hand_click;
     LinearLayout time;

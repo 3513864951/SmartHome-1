@@ -138,7 +138,7 @@ public class Set_lights extends AppCompatActivity {
             public void onItemClickListner(View v, int position) {
                 currentPosition = position;
                 if(positionList.isEmpty())
-                    positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
+                    positionList.add(position);
                 else {
                     for (int i = 0; i < positionList.size(); i++) {
                         if (positionList.get(i) == position) {
@@ -148,7 +148,7 @@ public class Set_lights extends AppCompatActivity {
                     }
                     if(count==-1)
                         {
-                            positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
+                            positionList.add(position);
 
                         }
                 }
@@ -240,7 +240,7 @@ public class Set_lights extends AppCompatActivity {
 
                         }
                         finish();
-                        //不为0就通过时间搜索
+
                     }
             }
         });
@@ -269,7 +269,6 @@ public class Set_lights extends AppCompatActivity {
                 }
             else
                  bright=location;
-            //只是保存信息，不发送
             }
         });
         set_all_lights.setOnClickListener(new View.OnClickListener() {
@@ -365,12 +364,6 @@ public class Set_lights extends AppCompatActivity {
                 if(breathe==-1)
                 {
                     breathe=1;
-//                    normal=-1;
-//                    sleep=-1;
-//                    other=-1;
-//                    light_sleep.setOpened(false);//应该是让
-//                    light_normal.setOpened(false);
-//                    light_else.setOpened(false);
                     brightness.setEnabled(true);
                     brightness.setSelected(true);
                     brightness.setFocusable(true);
@@ -386,60 +379,6 @@ public class Set_lights extends AppCompatActivity {
 
             }
         });
-        //        light_normal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            if(normal==-1)
-//            {
-//                normal=1;
-//                sleep=-1;
-//                breathe=-1;
-//                other=-1;
-//                light_sleep.setOpened(false);//应该是让
-//                light_breathe.setOpened(false);
-//                light_else.setOpened(false);
-//            }
-//
-//            else
-//                normal=-1;
-//            }
-//        });
-//        light_sleep.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(sleep==-1)
-//                {
-//                    normal=-1;
-//                    breathe=-1;
-//                    other=-1;
-//                    sleep=1;
-//                    light_breathe.setOpened(false);//应该是让
-//                    light_else.setOpened(false);
-//                    light_normal.setOpened(false);
-//                }
-//
-//                else
-//                    sleep=-1;
-//            }
-//        });
-//        light_else.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(other==-1)
-//                {
-//                    normal=-1;
-//                    sleep=-1;
-//                    breathe=-1;
-//                    other=1;
-//                    light_breathe.setOpened(false);//应该是让
-//                    light_sleep.setOpened(false);
-//                    light_normal.setOpened(false);
-//                }
-//
-//                else
-//                    other=-1;
-//            }
-//        });
 
 
 

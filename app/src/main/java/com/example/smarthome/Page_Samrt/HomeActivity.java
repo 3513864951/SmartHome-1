@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.HomeAdaptor;
 import com.example.smarthome.Database.Home;
-import com.example.smarthome.Helper.AddHomeHelper;
+import com.example.smarthome.Database.Helper.AddHomeHelper;
 import com.example.smarthome.R;
 
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class HomeActivity extends AppCompatActivity {
     private ArrayList<AddHomeHelper> addHomeHelperArrayList=new ArrayList<>();
     @Override

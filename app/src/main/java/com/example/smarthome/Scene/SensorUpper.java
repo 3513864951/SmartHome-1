@@ -10,7 +10,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.smarthome.Page_Samrt.ChsngeTm;
 import com.example.smarthome.R;
-
+/**
+ * @description 无用
+ */
 public class SensorUpper extends AppCompatActivity {
     Toolbar toolbar;
     TextView min,max;

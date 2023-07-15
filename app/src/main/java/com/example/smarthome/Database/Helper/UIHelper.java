@@ -1,4 +1,4 @@
-package com.example.smarthome.Helper;
+package com.example.smarthome.Database.Helper;
 
 import android.content.Context;
 import android.content.res.Resources;

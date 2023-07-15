@@ -20,7 +20,10 @@ import org.litepal.LitePal;
 
 import java.sql.Time;
 import java.util.List;
-
+/**
+ * @author liukai
+ * @description 场景时间条件
+ */
 public class TimeActivity extends AppCompatActivity {
     public static final String TIME="time";
     public static final String FLAG="isNew";//1 0 判断是否是新的
@@ -43,21 +46,15 @@ public class TimeActivity extends AppCompatActivity {
         });
         Intent intent=getIntent();
         setTime=intent.getStringExtra(TimeActivity.TIME);
-        add_time_point.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(TimeActivity.this,TimePointActivity.class);
-                intent1.putExtra(TimeActivity.TIME,setTime);
-                startActivity(intent1);
-            }
+        add_time_point.setOnClickListener(v -> {
+            Intent intent1=new Intent(TimeActivity.this,TimePointActivity.class);
+            intent1.putExtra(TimeActivity.TIME,setTime);
+            startActivity(intent1);
         });
-        add_time_period.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1=new Intent(TimeActivity.this,TimePeriodActivity.class);
-                intent1.putExtra(TimeActivity.TIME,setTime);
-                startActivity(intent1);
-            }
+        add_time_period.setOnClickListener(v -> {
+            Intent intent1=new Intent(TimeActivity.this,TimePeriodActivity.class);
+            intent1.putExtra(TimeActivity.TIME,setTime);
+            startActivity(intent1);
         });
     }
 

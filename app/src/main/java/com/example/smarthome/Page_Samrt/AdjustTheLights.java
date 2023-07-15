@@ -107,14 +107,14 @@ public class AdjustTheLights extends AppCompatActivity {
         viewList.add(view2);
         viewList.add(view3);
         viewList.add(view4);
-        Intent intent=getIntent();
-        String target_long_address=intent.getStringExtra(ManageAdaptor.TARGET_LONG_ADDRESS);
-        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(viewList,target_long_address);
+        Intent intent = getIntent();
+        String target_long_address = intent.getStringExtra(ManageAdaptor.TARGET_LONG_ADDRESS);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(viewList, target_long_address);
         viewPagerAdapter.setContext(AdjustTheLights.this);
         viewPager.setAdapter(viewPagerAdapter);
         //将viewpager与indicator绑定
         indicator.setDatas(mDatas);
-        indicator.setViewPager(viewPager,4);
+        indicator.setViewPager(viewPager, 4);
 
-
+    }
 }

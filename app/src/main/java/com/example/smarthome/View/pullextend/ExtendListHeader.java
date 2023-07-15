@@ -2,8 +2,6 @@ package com.example.smarthome.View.pullextend;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -25,14 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.ExtendHeadAdapter;
-//import com.example.smarthome.Database.AddDevice;
-//import com.example.smarthome.Database.AddSense;
-import com.example.smarthome.Adapter.FindDeviceAdapter;
 import com.example.smarthome.Database.Device;
-import com.example.smarthome.Helper.UIHelper;
+import com.example.smarthome.Database.Helper.UIHelper;
 import com.example.smarthome.MQTT.ClientMQTT;
-//import com.example.smarthome.Page_Samrt.Add_Sense;
-import com.example.smarthome.Page_Home.FindDevices;
 import com.example.smarthome.R;
 import com.example.smarthome.animation.RuwangAnimationAlpha;
 import com.google.android.material.snackbar.Snackbar;
@@ -59,15 +52,15 @@ public class ExtendListHeader extends ExtendLayout {
     RelativeLayout relativeLayout;
     MyAlertInputDialog myAlertInputDialog1;
     String device_nl;
-    ImageView sun,moon;
+    ImageView sun, moon;
     ExtendHeadAdapter extendHeadAdapter;
-    TextView add_device;
-    CardView ruwang,start_network;
+    TextView add_device, start_network_tv;
+    CardView ruwang, start_network;
     private ClientMQTT clientMQTT;
     ObjectAnimator objectAnimator;
     List<String> mDatas = new ArrayList<>();
-    List<Integer> idList=new ArrayList<>();
-    List<Device> deviceList=new ArrayList<>();
+    List<Integer> idList = new ArrayList<>();
+    List<Device> deviceList = new ArrayList<>();
     /**
      * 原点
      */
@@ -95,14 +88,15 @@ public class ExtendListHeader extends ExtendLayout {
         super(context, attrs);
         View view = View.inflate(getContext(), R.layout.extend_header, this);
         sun = view.findViewById(R.id.sun);
-        moon=view.findViewById(R.id.moon);
-        ruwang=view.findViewById(R.id.ruwang);
-        start_network=findViewById(R.id.add_dev);
-
-        add_device=view.findViewById(R.id.add_device);
+        moon = view.findViewById(R.id.moon);
+        ruwang = view.findViewById(R.id.ruwang);
+        start_network = findViewById(R.id.startNetwork);
+        start_network_tv = findViewById(R.id.startNetwork_tv);
+        add_device = view.findViewById(R.id.add_device);
         add_device.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                ruwangListener();
             }
         });
     }
@@ -117,7 +111,7 @@ public class ExtendListHeader extends ExtendLayout {
 
     @Override
     protected void bindView(View container) {
-       mRecyclerView = findViewById(R.id.device_list);
+        mRecyclerView = findViewById(R.id.device_list);
         mExpendPoint = findViewById(R.id.expend_point);
     }
 
@@ -159,7 +153,7 @@ public class ExtendListHeader extends ExtendLayout {
 //        alphaAnimation.setFillAfter(fragment);
         alphaAnimation.setDuration(4000);
 //        fragment.startAnimation(alphaAnimation);
-        TranslateAnimation translateAnimation=new TranslateAnimation(0f,0f,100f,-950f);
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, 100f, -950f);
         translateAnimation.setDuration(4000);
 //        translateAnimation.setRepeatCount(100);
 //        rongYi.startAnimation(translateAnimation);
@@ -168,46 +162,41 @@ public class ExtendListHeader extends ExtendLayout {
         animationSet.addAnimation(alphaAnimation);
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(translateAnimation);
-         sun.startAnimation(animationSet);
+        sun.startAnimation(animationSet);
 
-                ScaleAnimation scaleAnimation2 = new ScaleAnimation(0f, 1.0f, 0f, 1.0f,
-                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                scaleAnimation2.setDuration(5000);
+        ScaleAnimation scaleAnimation2 = new ScaleAnimation(0f, 1.0f, 0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation2.setDuration(5000);
 
 //        scaleAnimation.setRepeatCount(100);
 //        rongYi.startAnimation(scaleAnimation);
-                AlphaAnimation alphaAnimation2 = new AlphaAnimation(0f, 1f);
-                alphaAnimation2.setInterpolator(new AccelerateInterpolator());
+        AlphaAnimation alphaAnimation2 = new AlphaAnimation(0f, 1f);
+        alphaAnimation2.setInterpolator(new AccelerateInterpolator());
 //        alphaAnimation.setFillAfter(fragment);
-                alphaAnimation2.setDuration(1000);
-                AnimationSet animationSet2 = new AnimationSet(false);
-                animationSet2.setFillAfter(true);
-                animationSet2.addAnimation(alphaAnimation2);
-                animationSet2.addAnimation(scaleAnimation2);
-                moon.startAnimation(animationSet2);
+        alphaAnimation2.setDuration(1000);
+        AnimationSet animationSet2 = new AnimationSet(false);
+        animationSet2.setFillAfter(true);
+        animationSet2.addAnimation(alphaAnimation2);
+        animationSet2.addAnimation(scaleAnimation2);
+        moon.startAnimation(animationSet2);
         Connector.getDatabase();
 
 
-        relativeLayout=findViewById(R.id.pull_to_refresh_header_content);
-        clientMQTT=new ClientMQTT("light");
+        relativeLayout = findViewById(R.id.pull_to_refresh_header_content);
+        clientMQTT = new ClientMQTT("light");
         try {
             clientMQTT.Mqtt_innit();
         } catch (MqttException e) {
             e.printStackTrace();
         }
         clientMQTT.startReconnect(getContext());
-        deviceList=LitePal
+        deviceList = LitePal
                 .order("id desc")//TODO 用network的话要是退出软件，network没有及时变为00
-                .where("flag = ? and isUpdate = ?","0","1")
+                .where("flag = ? and isUpdate = ?", "0", "1")
                 .find(Device.class);
-        Log.e("555",deviceList.size()+"");
+        Log.e("555", deviceList.size() + "");
         adddevice();
-//        start_Network.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
         moon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,7 +207,7 @@ public class ExtendListHeader extends ExtendLayout {
 
                 start_network.startAnimation(alphaAnimation3);
                 start_network.setVisibility(CardView.VISIBLE);
-                objectAnimator=ObjectAnimator.ofFloat(start_network,"alpha",1f,0.7f,1f);
+                objectAnimator = ObjectAnimator.ofFloat(start_network, "alpha", 1f, 0.7f, 1f);
                 objectAnimator.setDuration(9000);
                 objectAnimator.setInterpolator(new RuwangAnimationAlpha());
                 objectAnimator.setRepeatCount(Animation.REVERSE);
@@ -226,7 +215,7 @@ public class ExtendListHeader extends ExtendLayout {
 
                 ruwang.startAnimation(alphaAnimation3);
                 ruwang.setVisibility(CardView.VISIBLE);
-                objectAnimator=ObjectAnimator.ofFloat(ruwang,"alpha",1f,0.7f,1f);
+                objectAnimator = ObjectAnimator.ofFloat(ruwang, "alpha", 1f, 0.7f, 1f);
                 objectAnimator.setDuration(9000);
                 objectAnimator.setInterpolator(new RuwangAnimationAlpha());
                 objectAnimator.setRepeatCount(Animation.REVERSE);
@@ -238,46 +227,58 @@ public class ExtendListHeader extends ExtendLayout {
         start_network.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                clientMQTT.publishMessagePlus(null,"0x0000","0xFF", "0x0002","0x02");
+                clientMQTT.publishMessagePlus(null, "0x0000", "0xFF", "0x0002", "0x02");
             }
+        });
+
+        start_network_tv.setOnClickListener(v -> {
+            clientMQTT.publishMessagePlus(null, "0x0000", "0xFF", "0x0002", "0x02");
         });
         ruwang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//点击入网以后连接网络判断是否可以执行下面的步骤？以下是弹出提示框是否进行设备接入................
-                int i =1;
-                if (deviceList.size() > 0) {
-                    adddevice();
-                     myAlertInputDialog1=new MyAlertInputDialog(getContext()).builder().
-                            setTitle("发现设备是否接入").setPositiveButton("同意",new View.OnClickListener(){
+            public void onClick(View v) {
+                ruwangListener();
+            }
+        });
+
+
+    }
+
+    private void ruwangListener() {
+        //点击入网以后连接网络判断是否可以执行下面的步骤？以下是弹出提示框是否进行设备接入................
+        int i = 1;
+        if (deviceList.size() > 0) {
+            adddevice();
+            myAlertInputDialog1 = new MyAlertInputDialog(getContext()).builder().
+                    setTitle("发现设备是否接入").setPositiveButton("同意", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     final MyAlertInputDialog myAlertInputDialog = new MyAlertInputDialog(getContext()).builder()
                                             .setTitle("请输入设备名称")
                                             .setEditText("").setCancelable(true);
-                                    if(deviceList.size()==0){
+                                    if (deviceList.size() == 0) {
                                         myAlertInputDialog.dismiss();
                                     }
-                                        myAlertInputDialog.dismiss();
-                                    String source_long_address=deviceList.get(0).getTarget_long_address();
-                                    Device device=new Device();
+                                    myAlertInputDialog.dismiss();
+                                    String source_long_address = deviceList.get(0).getTarget_long_address();
+                                    Device device = new Device();
                                     device.setFlag(1);
-                                    device.updateAll("target_long_address = ?",source_long_address);
+                                    device.updateAll("target_long_address = ?", source_long_address);
                                     //向中控发送APP同意入网信息
-                                    String source_short_address_1=deviceList.get(0).getTarget_short_address();
-                                    String source_short_address="0x"+source_short_address_1;
+                                    String source_short_address_1 = deviceList.get(0).getTarget_short_address();
+                                    String source_short_address = "0x" + source_short_address_1;
 
                                     myAlertInputDialog.setPositiveButton("确认", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            clientMQTT.publishMessagePlus(null,source_short_address,"0xFF", "0x0001","0x02");
-                                            device_nl= myAlertInputDialog.getResult();
-                                            if(TextUtils.isEmpty(device_nl)){
-                                                Toast.makeText(getContext(),"请输入传感器名称",Toast.LENGTH_SHORT).show();
+                                            clientMQTT.publishMessagePlus(null, source_short_address, "0xFF", "0x0001", "0x02");
+                                            device_nl = myAlertInputDialog.getResult();
+                                            if (TextUtils.isEmpty(device_nl)) {
+                                                Toast.makeText(getContext(), "请输入传感器名称", Toast.LENGTH_SHORT).show();
                                                 return;
-                                            }else
-                                            {
+                                            } else {
                                                 device.setName(device_nl);
-                                                device.updateAll("target_long_address = ?",source_long_address);
+                                                device.updateAll("target_long_address = ?", source_long_address);
                                             }
 
                                             myAlertInputDialog.dismiss();
@@ -289,7 +290,7 @@ public class ExtendListHeader extends ExtendLayout {
                                     }).setNegativeButton("取消", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            clientMQTT.publishMessagePlus(null,"0x0000","0xFF", "0x0000","0x02");
+                                            clientMQTT.publishMessagePlus(null, "0x0000", "0xFF", "0x0000", "0x02");
                                             extendHeadAdapter.notifyDataSetChanged();
                                         }
                                     });
@@ -299,53 +300,47 @@ public class ExtendListHeader extends ExtendLayout {
                                 }
 
                             }
-                            ).setNegativeButton("拒绝",new View.OnClickListener(){
-                                @Override
-                                public void onClick(View v) {
-                                    String source_short_address_1=deviceList.get(0).getTarget_short_address();
-                                    String source_short_address="0x"+source_short_address_1;
-                                    Toast.makeText(getContext(),"好吧",Toast.LENGTH_SHORT).show();
-                                    clientMQTT.publishMessagePlus(null,source_short_address,"0xFF", "0x0000","0x02");
-                                    idList.remove(0);
-                                    deviceList.remove(0);
-                                    adddevice();
-                                    ruwang.setVisibility(VISIBLE);
-                                    return;
-                                }
-                            });
-                    if(deviceList.size()==0)
-                        myAlertInputDialog1.dismiss();
-                    else
-                        myAlertInputDialog1.show();
-                    adddevice();
-
-
-
-                }
-                else
-                    Snackbar.make(relativeLayout,"未发现可入网设备",Snackbar.LENGTH_SHORT).show();
+                    ).setNegativeButton("拒绝", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String source_short_address_1 = deviceList.get(0).getTarget_short_address();
+                            String source_short_address = "0x" + source_short_address_1;
+                            Toast.makeText(getContext(), "好吧", Toast.LENGTH_SHORT).show();
+                            clientMQTT.publishMessagePlus(null, source_short_address, "0xFF", "0x0000", "0x02");
+                            idList.remove(0);
+                            deviceList.remove(0);
+                            adddevice();
+                            ruwang.setVisibility(VISIBLE);
+                            return;
+                        }
+                    });
+            if (deviceList.size() == 0) {
+                myAlertInputDialog1.dismiss();
+            } else {
+                myAlertInputDialog1.show();
             }
-        });
+            adddevice();
 
 
+        } else {
+            Snackbar.make(relativeLayout, "未发现可入网设备", Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     private void adddevice() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        idList=new ArrayList<>();
-        idList.clear();
-        if(deviceList.size()>=1)
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        idList = new ArrayList<>();
+        if (deviceList.size() >= 1) {
             for (int i = 0; i < deviceList.size(); i++) {
                 idList.add(deviceList.get(i).getId());
             }
-        extendHeadAdapter= new ExtendHeadAdapter(deviceList);
+        }
+        extendHeadAdapter = new ExtendHeadAdapter(deviceList);
         extendHeadAdapter.setDeviceId(idList);
         mRecyclerView.setAdapter(extendHeadAdapter);
-        if (deviceList.size()==0){
+        if (deviceList.size() == 0) {
             ruwang.setClickable(false);
-        }
-        else
-        {
+        } else {
             ruwang.setClickable(true);
         }
         extendHeadAdapter.notifyDataSetChanged();
@@ -353,11 +348,12 @@ public class ExtendListHeader extends ExtendLayout {
     }
 
     @Override
-    public void onVisibility(){
+    public void onVisibility() {
         sun.setVisibility(INVISIBLE);
         moon.setVisibility(INVISIBLE);
         ruwang.setVisibility(INVISIBLE);
     }
+
     @Override
     protected void onReleaseToRefresh() {
 
@@ -403,7 +399,8 @@ public class ExtendListHeader extends ExtendLayout {
             mRecyclerView.setTranslationY(-(Math.abs(offset) - listHeight) / 2);
         }
     }
-    public void tran(){
+
+    public void tran() {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.4f, 1.0f, 0.50f, 1.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(3000);
@@ -414,7 +411,7 @@ public class ExtendListHeader extends ExtendLayout {
 //        alphaAnimation.setFillAfter(fragment);
         alphaAnimation.setDuration(3000);
 //        fragment.startAnimation(alphaAnimation);
-        TranslateAnimation translateAnimation=new TranslateAnimation(0f,0f,100f,-100f);
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, 100f, -100f);
         translateAnimation.setDuration(3000);
         translateAnimation.setRepeatCount(100);
 //        rongYi.startAnimation(translateAnimation);
@@ -423,11 +420,8 @@ public class ExtendListHeader extends ExtendLayout {
         animationSet.addAnimation(alphaAnimation);
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(translateAnimation);
-         sun.startAnimation(animationSet);
+        sun.startAnimation(animationSet);
     }
-
-
-
 
 
 }

@@ -21,7 +21,9 @@ import com.example.smarthome.Scene.More;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.concurrent.Executor;
-
+/**
+ * @description 门锁
+ */
 public class Monitoring extends AppCompatActivity {
     CardView open_the_door,close_the_door;
     ClientMQTT clientMQTT;

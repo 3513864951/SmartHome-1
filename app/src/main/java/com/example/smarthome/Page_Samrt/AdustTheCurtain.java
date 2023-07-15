@@ -38,6 +38,7 @@ public class AdustTheCurtain extends AppCompatActivity {
     private int home_choose;
     private String s_home_choose;
     private ArcSeekBar deep;
+    float progress1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +68,15 @@ public class AdustTheCurtain extends AppCompatActivity {
 
             @Override
             public void onProgressChanged(float progress, float max, boolean fromUser) {
-                String extent=String.valueOf(progress);
+        progress1=progress;
+            }
+            @Override
+            public void onStopTrackingTouch(boolean isCanDrag) {
+                String extent=String.valueOf(Integer.valueOf((int) progress1));
                 if(extent.length()==1){
                     extent="0"+extent;
                 }
                 clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x"+extent,"0x01");
-
-            }
-            @Override
-            public void onStopTrackingTouch(boolean isCanDrag) {
 
             }
 

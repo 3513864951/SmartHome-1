@@ -16,7 +16,7 @@ import com.example.smarthome.R;
 
 /**
  * @description
- * 场景创建时智能设备执行
+ * 场景任务 选择智能设备
  */
 public class SmartActivity extends AppCompatActivity {
     TextView set_air,set_light,set_curtain,set_humidity;

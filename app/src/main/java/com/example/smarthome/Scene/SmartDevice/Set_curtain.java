@@ -59,7 +59,6 @@ public class Set_curtain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_curtain);
-        //判断是否为再次编辑
         Intent intent=getIntent();
         timeIn=intent.getStringExtra(Set_curtain.TIME);
         set_close=findViewById(R.id.set_close);
@@ -98,7 +97,7 @@ public class Set_curtain extends AppCompatActivity {
             public void onItemClickListner(View v, int position) {
                 currentPosition = position;
                 if(positionList.isEmpty())
-                    positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
+                    positionList.add(position);
                 else {
                     for (int i = 0; i < positionList.size(); i++) {
                         if (positionList.get(i) == position) {
@@ -108,7 +107,7 @@ public class Set_curtain extends AppCompatActivity {
                     }
                     if(count==-1)
                     {
-                        positionList.add(position);//选择多项设备通过字符串储存选择的位置，那要是选择两遍呢?遍历，有就删除，没有就添加
+                        positionList.add(position);
 
                     }
                 }
@@ -205,8 +204,6 @@ public class Set_curtain extends AppCompatActivity {
         scene_curtain.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //先查找是否已经存在数据，没有就新建
-                //应该加一个保存按钮
                 finish();
             }
         });
@@ -227,8 +224,6 @@ public class Set_curtain extends AppCompatActivity {
         set_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //点击后变色，再次点击后又变成灰色
-                //点击后先检测这个是否已经处于选择状态，如果没有，就变亮，让另一个变暗；如果处于，就让这个变暗，另一个不用管
                 if(open==-1)
                 {
                     set_open.setImageResource(R.drawable.curtain_open_selected);

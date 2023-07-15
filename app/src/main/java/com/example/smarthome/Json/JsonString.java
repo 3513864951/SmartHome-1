@@ -13,7 +13,7 @@ public class JsonString {
     private String device_type;
     private String valid_data;
     private String valid_data_length;
-    private String controller_long_address="0x70E46125004B1200";
+    private String controller_long_address="0xBD542A27004B1200";
     public JsonString( String timestamp,String controller_long_address,String device_id, String misc, String target_short_address, String device_type, String valid_data, String valid_data_length) {
         this.timestamp=timestamp;
         this.device_id = device_id;

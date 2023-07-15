@@ -18,7 +18,9 @@ import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 场景传感器
+ */
 public class SceneSensor extends AppCompatActivity {
     RecyclerView recyclerView2;
     Toolbar toolbar;

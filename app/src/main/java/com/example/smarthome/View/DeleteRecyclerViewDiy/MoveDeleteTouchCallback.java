@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smarthome.Adapter.RecyclerAdapter;
-import com.example.smarthome.Helper.AddSmartHelper;
+import com.example.smarthome.Database.Helper.AddSmartHelper;
 
 import java.util.List;
 

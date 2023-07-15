@@ -26,7 +26,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * @description 加湿器
+ */
 public class Set_Huminity extends AppCompatActivity {
     RecyclerView select_hum;
     CardView open,close;
@@ -79,7 +81,7 @@ public class Set_Huminity extends AppCompatActivity {
                 deviceChoose.add(device);
             }
         }
-        mAirList=LitePal.where("device_type = ? and flag = ?","02","1").find(Device.class);
+        mAirList=LitePal.where("device_type = ? and flag = ?","09","1").find(Device.class);
         clickListenerInit();
         recyclerView();
     }

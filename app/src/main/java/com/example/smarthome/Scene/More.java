@@ -44,7 +44,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @description 场景活动
+ */
 public class More extends AppCompatActivity {
     public static final String CONTROLLER_LONG_ADDRESS="70E46125004B1200";
     RelativeLayout select_condition,select_tesk;
@@ -659,11 +661,15 @@ public class More extends AppCompatActivity {
         String[] parts = time.split(":");
         int hour = Integer.parseInt(parts[0]);
         int minute = Integer.parseInt(parts[1]);
-        int timeInMinutes = hour * 60 + minute;
-        String hexString = Integer.toHexString(timeInMinutes);
-        if (hexString.length() == 3) {
-            hexString = "0" + hexString;
+        String hexString1 = Integer.toHexString(hour);
+        String hexString2 = Integer.toHexString(minute);
+        if (hexString1.length() == 1) {
+            hexString1 = "0" + hexString1;
         }
+        if (hexString2.length() == 1) {
+            hexString2 = "0" + hexString2;
+        }
+        String hexString=hexString1+hexString2;
         String HEXTime=hexString.toUpperCase();
         return HEXTime;
     }

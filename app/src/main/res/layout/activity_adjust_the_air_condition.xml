@@ -28,8 +28,8 @@
         app:tempStrArray="@array/temp" />
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_wind"
             android:layout_width="150dp"
@@ -40,40 +40,41 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="#FCFFDE">
             <RelativeLayout
+                android:id="@+id/instruct_left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="风速选择"
-                android:textColor="#004E8D"
-                android:layout_marginLeft="13dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="14dp"/>
-            <ImageView
-                android:id="@+id/ib_wind_min"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/wind_min"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="50dp"
-                android:text="低\n风"
-                android:layout_toRightOf="@+id/ib_wind_min"
-                android:layout_marginTop="50dp"
-                android:textSize="17dp"
-                android:textColor="#292929" />
-            <View
-                android:id="@+id/view_wind_min"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginRight="25dp"
-                android:background="#59CBD0CD"
-                android:layout_marginTop="115dp"
-                android:layout_marginBottom="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="风速选择"
+                    android:textColor="#004E8D"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="14dp"/>
+                <ImageView
+                    android:id="@+id/ib_wind_min"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/wind_min"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"/>
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:text="低\n风"
+                    android:layout_toRightOf="@+id/ib_wind_min"
+                    android:layout_marginTop="50dp"
+                    android:textSize="17dp"
+                    android:textColor="#292929" />
+                <View
+                    android:id="@+id/view_wind_min"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginRight="25dp"
+                    android:background="#59CBD0CD"
+                    android:layout_marginTop="115dp"
+                    android:layout_marginBottom="15dp"/>
                 <ImageView
                     android:id="@+id/ib_wind_mid"
                     android:layout_width="50dp"
@@ -133,7 +134,7 @@
             app:cardCornerRadius="30dp"
             app:cardElevation="5dp"
             android:layout_marginLeft="25dp"
-           android:layout_toRightOf="@+id/cv_wind"
+            android:layout_toRightOf="@+id/cv_wind"
             android:layout_marginTop="20dp"
             android:backgroundTint="#FCFFDE">
             <RelativeLayout
@@ -221,6 +222,65 @@
                     android:layout_marginBottom="15dp"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-        </RelativeLayout>
 
-    </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_time"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/cv_wind"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/add"
+            android:text="Button" />
+
+        <TextView
+            android:id="@+id/time_input"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_40"
+            android:layout_toRightOf="@id/add_time"
+            android:layout_below="@id/cv_wind"
+            android:layout_marginStart="5dp"
+            android:textSize="28sp"
+            android:text="0.0"
+            android:gravity="center"
+            android:background="@drawable/time_round_20"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/yes"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/yes"
+            android:layout_below="@id/cv_wind"
+            android:layout_toRightOf="@id/time_input"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_below="@id/cv_wind"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/cancel"
+            android:layout_toRightOf="@id/yes"
+            />
+        <LinearLayout
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_toRightOf="@id/tip"
+            android:layout_below="@id/cv_wind"
+            android:orientation="vertical"
+            tools:ignore="UnknownId">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/arrow_up"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_20"
+                android:background="@drawable/arrow_up"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/arrow_down"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_20"
+                android:background="@drawable/arrow_down"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

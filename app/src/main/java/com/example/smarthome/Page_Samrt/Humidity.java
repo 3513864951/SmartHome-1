@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.smarthome.R;
-
+/**
+ * @description 弃用
+ */
 public class Humidity extends AppCompatActivity {
 
     @Override

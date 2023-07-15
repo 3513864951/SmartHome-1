@@ -13,7 +13,9 @@ import com.example.smarthome.Database.Scene.Temp;
 import com.example.smarthome.R;
 
 import org.litepal.LitePal;
-
+/**
+ * @description 任务场景
+ */
 public class MissionActivity extends AppCompatActivity {
     LinearLayout sysMessage;
     LinearLayout smart_device;

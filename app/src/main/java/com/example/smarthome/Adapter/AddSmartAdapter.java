@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Helper.AddSmartHelper;
+import com.example.smarthome.Database.Helper.AddSmartHelper;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;

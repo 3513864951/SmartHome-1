@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.smarthome.R;
-
+/**
+ * @description 弃用
+ */
 public class Tesk extends AppCompatActivity {
     TextView temperature,time,humidity;
     @Override

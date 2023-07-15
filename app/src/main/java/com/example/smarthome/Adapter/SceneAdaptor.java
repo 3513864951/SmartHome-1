@@ -68,7 +68,6 @@ public class SceneAdaptor extends RecyclerView.Adapter<SceneAdaptor.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull SceneAdaptor.ViewHolder holder, int position) {
-        //TODO 要判断是sceneList否为空还是?
     holder.sceneName.setText(sceneList.get(position).getName());
     }
 

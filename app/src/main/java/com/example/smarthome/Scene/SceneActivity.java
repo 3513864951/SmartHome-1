@@ -17,7 +17,9 @@ import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class SceneActivity extends AppCompatActivity {
     private List<Scene> sceneList=new ArrayList<>();
     private RecyclerView recyclerView;

@@ -40,8 +40,8 @@ public class SmartSensor extends AppCompatActivity {
 
     }
     private void initRecyclerView()
-    {      //TODO
-        //FIXME 从服务器更新那个地方的储存数据好像没有分Sensor emm
+    {
+
         sensorList= LitePal.findAll(Sensor.class);
         if(sensorList.size()!=0){
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);

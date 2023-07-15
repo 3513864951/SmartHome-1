@@ -21,7 +21,9 @@ import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class ShowSense extends AppCompatActivity {
 private List<Sensor> sensorList=new ArrayList<>();
 RecyclerView recyclerView;

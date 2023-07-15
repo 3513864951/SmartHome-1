@@ -12,7 +12,9 @@ import android.widget.Spinner;
 
 import com.example.smarthome.Database.Model;
 import com.example.smarthome.R;
-
+/**
+ * @description 弃用
+ */
 public class GoOff extends AppCompatActivity {
     Toolbar go_off_tb;
     private int model;//模式

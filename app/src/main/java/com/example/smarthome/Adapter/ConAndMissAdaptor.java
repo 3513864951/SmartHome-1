@@ -1,8 +1,6 @@
 package com.example.smarthome.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Database.Home;
 import com.example.smarthome.Database.Scene.Condition;
 import com.example.smarthome.Database.Scene.Mission;
 import com.example.smarthome.Database.Scene.S_Device;
-import com.example.smarthome.Page_Samrt.AdjustTheAirCondition;
-import com.example.smarthome.Page_Samrt.AdjustTheLights;
-import com.example.smarthome.Page_Samrt.AdjustTheMusic;
-import com.example.smarthome.Page_Samrt.AdustTheCurtain;
 import com.example.smarthome.R;
-import com.example.smarthome.Scene.SceneSensor;
-import com.example.smarthome.Scene.SmartDevice.SmartDeviceList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +118,7 @@ public class ConAndMissAdaptor  extends RecyclerView.Adapter<ConAndMissAdaptor.V
                 case 3:holder.imageView.setImageResource(R.drawable.time);category="定时执行";break;
                 case 4:holder.imageView.setImageResource(R.drawable.scene);category="场景控制";break;
                 case 5:holder.imageView.setImageResource(R.drawable.sensor);category="传感器";break;
+
                 default:
                     holder.imageView.setImageResource(R.drawable.bg_swpt);category="这绝对出bug了！";break;
             }

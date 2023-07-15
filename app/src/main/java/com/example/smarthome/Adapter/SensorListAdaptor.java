@@ -61,8 +61,6 @@ public class SensorListAdaptor  extends RecyclerView.Adapter<SensorListAdaptor.V
     public SensorListAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.sensorlist,parent,false);
         final SensorListAdaptor.ViewHolder holder=new SensorListAdaptor.ViewHolder(view);
-        //TODO 如果用户编辑之前已经选择的条件或任务，就要让之前选择的电器变为选中状态
-//        holder.constraintLayout.setBackgroundColor(0xFF03A9F4);
         return holder;
     }
 

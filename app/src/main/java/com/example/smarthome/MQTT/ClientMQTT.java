@@ -51,8 +51,7 @@ public class ClientMQTT {
     private static final String userName = "ESP32-C3-username";
 //    private static final String password = "ESP32-C3-password";
     private static final String password = "sUFhMRm3FUx6RqhKWYnRQBGQF6y1YZYHLsrVtaoYKA2GrPu9";
-//    public  static final String serverURI="tcp://broker.emqx.io:1883";
-  public  static final String serverURI="tcp://home.towo.eu.org";
+    public  static final String serverURI="tcp://home.towo.eu.org:21883";
     //TODO networkFlag
     private String device_id=MqttClient.generateClientId();
 
@@ -153,6 +152,7 @@ public class ClientMQTT {
             }
         }, 0*1000, 10 * 1000, TimeUnit.MILLISECONDS);
         handler = new Handler(Looper.myLooper()) {
+            @Override
             @SuppressLint("SetTextI18n")
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
@@ -238,7 +238,7 @@ public void publishMessagePlusForActivity(String misc,String target_short_addres
     LocalDateTime localDateTime = LocalDateTime.now();
 // 使用 ISO-8601 格式化器将其转换为字符串
     String timestamp = DateTimeFormatter.ISO_DATE_TIME.format(localDateTime);
-    String controller_long_address="70E46125004B1200";
+    String controller_long_address="79482B27004B1200";
     if (mqttClient == null || !client.isConnected()) {
         return;
     }
@@ -264,10 +264,16 @@ public void publishMessagePlusForActivity(String misc,String target_short_addres
     //这边的map改成List<Map<String,String>>，毕竟设备不只是一个
     public void publishMessagePlus(String misc,String target_short_address,String device_type,String valid_data,String valid_data_length)
     {
+//        LocalDateTime localDateTime = LocalDateTime.now();
+//        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ISO_DATE_TIME;
+//        String timestamp=dateTimeFormatter.format(localDateTime);
+//        // 设置系统默认时区为 CST（即中国标准时间）
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+// 获取当前北京时间
         LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ISO_DATE_TIME;
-        String timestamp=dateTimeFormatter.format(localDateTime);
-        String controller_long_address="70E46125004B1200";
+// 使用 ISO-8601 格式化器将其转换为字符串
+        String timestamp = DateTimeFormatter.ISO_DATE_TIME.format(localDateTime);
+        String controller_long_address="79482B27004B1200";
         if (client == null || !client.isConnected()) {
             return;
         }

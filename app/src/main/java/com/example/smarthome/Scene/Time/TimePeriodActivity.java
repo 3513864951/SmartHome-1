@@ -23,7 +23,9 @@ import org.litepal.LitePal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * @description 场景时间段
+ */
 public class TimePeriodActivity extends AppCompatActivity {
 
     private MaterialButton add_time_periodStart;

@@ -21,7 +21,9 @@ import com.google.android.material.button.MaterialButton;
 import org.litepal.LitePal;
 
 import java.util.Locale;
-
+/**
+ * @description 传感器条件
+ */
 public class SensorCondition extends AppCompatActivity {
     Toolbar toolbar;
     EditText max_num,min_num;

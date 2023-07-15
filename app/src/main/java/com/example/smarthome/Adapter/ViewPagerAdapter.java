@@ -22,7 +22,7 @@ import java.util.List;
 public class ViewPagerAdapter extends PagerAdapter{
     private ClientMQTT clientMQTT;
     private List<View> mList;
-    private SwitchView breathe,open;
+    private SwitchView breathe,open,open_All;
     private String target_long_address;
     private StepSeekBar brightness;
     int breath1=0;
@@ -33,7 +33,7 @@ public class ViewPagerAdapter extends PagerAdapter{
     int open2=0;
     int open3=0;
     int open4=0;
-
+int  openAll1=0;
 private Context context;
     /**
      *
@@ -90,6 +90,21 @@ public void setContext(Context context){
         breathe=(SwitchView)mList.get(position).findViewById(R.id.v_switch_1);
         open=(SwitchView)mList.get(position).findViewById(R.id.primary_button);
         brightness=(StepSeekBar)mList.get(position).findViewById(R.id.brightness);
+        open_All=(SwitchView)mList.get(position).findViewById(R.id.open_All);
+        open_All.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(openAll1==0){
+                    clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x0004"+"05","0x03");
+                    openAll1=1;
+                }
+                else{
+                    clientMQTT.publishMessagePlus(null,"0x"+target_short_address,"0x"+device_type,"0x000400","0x03");
+                    openAll1=0;
+                }
+
+            }
+        });
         switch (position){
             case 0://第一个界面的控件
 
@@ -109,6 +124,7 @@ public void setContext(Context context){
 
                     }
                 });
+
                 open.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

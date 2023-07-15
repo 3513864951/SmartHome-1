@@ -23,7 +23,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * @description 场景时间点
+ */
 public class TimePointActivity extends AppCompatActivity {
     private MaterialButton add_time;
     private MaterialButton add_repeat;
@@ -97,7 +99,6 @@ public class TimePointActivity extends AppCompatActivity {
                 String time=simpleDateFormat.format(date);
                 temp.updateAll();
                 C_Time c_time2=temp.getC_timeList().get(0);
-                //TODO 以后有时间看看为什么temp.get不到;为什么我这样能get到c_time，回到More那里就get不到了？
                 if(flag==0){
                     condition=new Condition();
                     condition.setC_time(c_time);

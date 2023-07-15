@@ -23,6 +23,9 @@ import com.journeyapps.barcodescanner.CompoundBarcodeView;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 
 import java.util.List;
+/**
+ * @description 二维码扫描，弃用
+ */
 public class ScanActivity extends AppCompatActivity {
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
     private CompoundBarcodeView barcodeView;

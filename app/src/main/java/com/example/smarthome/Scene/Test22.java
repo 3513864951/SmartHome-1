@@ -10,7 +10,9 @@ import com.example.smarthome.View.PickerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description 弃用
+ */
 public class Test22 extends AppCompatActivity {
     PickerView minutePv;
     @SuppressLint("MissingInflatedId")

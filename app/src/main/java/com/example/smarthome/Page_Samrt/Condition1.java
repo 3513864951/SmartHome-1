@@ -11,7 +11,9 @@ import com.example.smarthome.R;
 import com.example.smarthome.Scene.SmartDevice.Set_air;
 import com.example.smarthome.Scene.SmartDevice.Set_curtain;
 import com.example.smarthome.Scene.SmartDevice.Set_lights;
-
+/**
+ * @description 弃用
+ */
 public class Condition1 extends AppCompatActivity {
     TextView set_air,set_light,set_curtain;
     @Override

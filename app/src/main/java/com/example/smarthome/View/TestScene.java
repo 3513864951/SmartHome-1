@@ -10,7 +10,9 @@ import com.example.smarthome.MQTT.ClientMQTT;
 import com.example.smarthome.R;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
-
+/**
+ * @description 测试
+ */
 public class TestScene extends AppCompatActivity {
         private Button add_scene;
         private Button add_condition;

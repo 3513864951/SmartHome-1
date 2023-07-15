@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smarthome.Helper.AddHomeHelper;
+import com.example.smarthome.Database.Helper.AddHomeHelper;
 import com.example.smarthome.R;
 
 import java.util.ArrayList;
